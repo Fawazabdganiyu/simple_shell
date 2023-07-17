@@ -22,7 +22,7 @@ char **split_string(char *str, const char *delim);
 unsigned int get_words(char *s);
 void _free(char **arr);
 void _isatty();
-void search_path(char **);
+void search_path(char **, char *, char **);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 void free_list(list_t *head);

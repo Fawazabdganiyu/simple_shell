@@ -27,9 +27,8 @@ int main(int ac, char **av)
 
 		arr = split_string(buf, delim);
 
-		search_path(arr);
 		printf("--<%s>---\n", arr[0]);
-		_fork(program, arr, env);
+		search_path(arr, program, env);
 	}
 	free(buf);
 	_exit(EXIT_SUCCESS);
