@@ -17,7 +17,7 @@ void _free(char **arr, unsigned int i);
 void _isatty();
 
 /* Actions */
-size_t _fork(char **arr, size_t i, char **env);
+size_t _fork(char *program, char **arr, size_t i, char **env);
 size_t _execve(char **arr, size_t i, char **env);
 
 #endif /* _SHELL_H_ */
