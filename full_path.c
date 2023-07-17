@@ -29,14 +29,17 @@ void search_path(char **command)
 {
 	char *value, *dir, *full_path;
 
-	value = _getenv("PATH");
+	value = strdup(_getenv("PATH"));
 
 	dir = strtok(value, ":");
 	while (dir)
 	{
 		full_path = make_full_path(dir, *command);
 		if (access(full_path, F_OK) == 0)
-			*command = full_path;
+		{
+			free(*command);
+			*command = strdup(full_path);
+		}
 
 		dir = strtok(NULL, ":");
 	}
