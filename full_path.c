@@ -25,7 +25,7 @@ char *make_full_path(char *dir, char *command)
 }
 
 /***/
-char *full_path(char *command)
+char *search_path(char *command)
 {
 	char *value, *dir, *full_path;
 
@@ -40,5 +40,6 @@ char *full_path(char *command)
 
 		dir = strtok(NULL, ":");
 	}
+	free(full_path);
 	return (NULL);
 }

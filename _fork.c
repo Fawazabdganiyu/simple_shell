@@ -12,7 +12,15 @@
 size_t _fork(char *program, char **arr, char **env)
 {
 	pid_t pid;
+	char *prog = arr[0];
 
+	prog = search_path(prog);
+	if (!prog)
+	{
+		perror(program);
+		return (-1);
+	}
+	arr[0] = prog;
 	pid = fork();
 	if (pid == -1)
 	{
@@ -23,7 +31,7 @@ size_t _fork(char *program, char **arr, char **env)
 
 	if (pid == 0)
 	{
-		execve(arr[0], arr, env);
+		execve(prog, arr, env);
 		perror(program);
 		_free(arr);
 		return (1);

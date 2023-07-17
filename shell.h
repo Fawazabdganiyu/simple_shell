@@ -15,6 +15,9 @@ char **split_string(char *str, const char *delim);
 unsigned int get_words(char *s);
 void _free(char **arr);
 void _isatty();
+char *search_path(char *);
+char *make_full_path(char *, char*);
+char *_getenv(char *);
 
 /* Actions */
 size_t _fork(char *program, char **arr, char **env);
