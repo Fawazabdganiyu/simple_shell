@@ -9,14 +9,14 @@
  *
  * Return: 0 on sucess, 1 otherwise
  */
-size_t _fork(char *program, char **arr, size_t i, char **env)
+size_t _fork(char *program, char **arr, char **env)
 {
 	pid_t pid;
 
 	pid = fork();
 	if (pid == -1)
 	{
-		_free(arr, i);
+		_free(arr);
 		perror("Fork");
 		return (1);
 	}
@@ -25,12 +25,12 @@ size_t _fork(char *program, char **arr, size_t i, char **env)
 	{
 		execve(arr[0], arr, env);
 		perror(program);
-		_free(arr, i);
+		_free(arr);
 		return (1);
 	}
 
 	wait(NULL);
-	_free(arr, i);
+	_free(arr);
 
 	return (0);
 

@@ -12,7 +12,7 @@
 int main(int ac, char **av)
 {
 	char *buf = NULL, **arr, *delim = " \n", **env = environ;
-	size_t n = 0, i, retval;
+	size_t n = 0, retval;
 	char *program;
 
 	(void)ac;
@@ -26,10 +26,8 @@ int main(int ac, char **av)
 			break;
 
 		arr = split_string(buf, delim);
-		for (i = 0; arr[i]; i++)
-			;
 
-		retval = _fork(program, arr, i, env);
+		retval = _fork(program, arr, env);
 	}
 	free(buf);
 	return (retval);

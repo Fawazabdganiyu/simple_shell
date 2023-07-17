@@ -5,11 +5,11 @@
  * @arr: A pointer to the array
  * @i: Number of elements in the array
  */
-void _free(char **arr, unsigned int i)
+void _free(char **arr)
 {
 	unsigned int j;
 
-	for (j = 0; j < i; j++)
+	for (j = 0; arr[j]; j++)
 		free(arr[j]);
 	free(arr);
 }

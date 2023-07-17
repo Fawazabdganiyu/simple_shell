@@ -13,11 +13,10 @@ extern char **environ;
 /* Processes */
 char **split_string(char *str, const char *delim);
 unsigned int get_words(char *s);
-void _free(char **arr, unsigned int i);
+void _free(char **arr);
 void _isatty();
 
 /* Actions */
-size_t _fork(char *program, char **arr, size_t i, char **env);
-size_t _execve(char **arr, size_t i, char **env);
+size_t _fork(char *program, char **arr, char **env);
 
 #endif /* _SHELL_H_ */
