@@ -9,37 +9,28 @@
  *
  * Return: 0 on sucess, 1 otherwise
  */
-size_t _fork(char *program, char **arr, char **env)
+void _fork(char *program, char **arr, char **env)
 {
 	pid_t pid;
-	char *prog = arr[0];
 
-	prog = search_path(prog);
-	if (!prog)
-	{
-		perror(program);
-		return (-1);
-	}
-	arr[0] = prog;
 	pid = fork();
 	if (pid == -1)
 	{
 		_free(arr);
 		perror("Fork");
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (pid == 0)
 	{
-		execve(prog, arr, env);
+		execve(arr[0], arr, env);
 		perror(program);
 		_free(arr);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 
 	wait(NULL);
 	_free(arr);
 
-	return (0);
 
 }

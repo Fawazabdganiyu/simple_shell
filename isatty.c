@@ -6,5 +6,8 @@
 void _isatty(void)
 {
 	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+	{
+		write(STDOUT_FILENO, ":) ", 3);
+		fflush(stdout);
+	}
 }
