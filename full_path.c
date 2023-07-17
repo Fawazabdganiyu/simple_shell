@@ -35,5 +35,10 @@ char *full_path(char *command)
 	while (dir)
 	{
 		full_path = make_full_path(dir, command);
+		if (access(full_path, F_OK) == 0)
+			return (full_path);
+
+		dir = strtok(NULL, ":");
 	}
+	return (NULL);
 }
