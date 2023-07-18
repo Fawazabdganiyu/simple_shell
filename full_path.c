@@ -25,9 +25,9 @@ char *make_full_path(char *dir, char *command)
 }
 
 /***/
-void search_path(char **command, char *prog, char **env)
+void search_path(char **command)
 {
-	char *value, *dir, *full_path;
+	char *value, *dir, *full_path = NULL, *command_cpy;
 
 	value = strdup(_getenv("PATH"));
 
@@ -37,13 +37,14 @@ void search_path(char **command, char *prog, char **env)
 		full_path = make_full_path(dir, *command);
 		if (access(full_path, F_OK) == 0)
 		{
-			free(*command);
+			command_cpy = *command;
 			*command = full_path;
 			free(value);
-			_fork(prog, command, env);
+			free(command_cpy);
 			return;
 		}
 
+		free(full_path);
 		dir = strtok(NULL, ":");
 	}
 	free(value);
