@@ -1,6 +1,11 @@
 #include "shell.h"
 
-/***/
+/**
+ * make_full_path - concats directory  '/' and cmd
+ * @dir: directory
+ * @command: cmd
+ * Return: full command path
+ */
 char *make_full_path(char *dir, char *command)
 {
 	size_t size, i, j;
@@ -25,7 +30,10 @@ char *make_full_path(char *dir, char *command)
 	return (full_path);
 }
 
-/***/
+/**
+ * search_path - searches if command exists in path
+ * @command: command to search
+ */
 void search_path(char **command)
 {
 	char *value, *dir, *full_path = NULL, *command_cpy;
