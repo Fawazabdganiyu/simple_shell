@@ -35,6 +35,7 @@ int main(int ac, char **av)
 		/* Execute the input command*/
 		_fork(program, arr, env);
 	}
+
 	free(buf);
 	_exit(EXIT_SUCCESS);
 }

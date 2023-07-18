@@ -6,10 +6,11 @@ char *make_full_path(char *dir, char *command)
 	size_t size, i, j;
 	char *full_path;
 
-	size = strlen(dir) + strlen(command) + 2;
+	size = _strlen(dir) + _strlen(command) + 2;
 	full_path = malloc(sizeof(char) * size);
 	if (!full_path)
 		return (NULL);
+
 	/* Concatenate the strings */
 	for (i = 0; dir[i]; i++)
 		full_path[i] = dir[i];
@@ -29,7 +30,7 @@ void search_path(char **command)
 {
 	char *value, *dir, *full_path = NULL, *command_cpy;
 
-	value = strdup(_getenv("PATH"));
+	value = _strdup(_getenv("PATH"));
 
 	dir = strtok(value, ":");
 	while (dir)

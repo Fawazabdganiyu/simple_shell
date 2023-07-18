@@ -53,13 +53,13 @@ char **split_string(char *str, const char *delim)
 	token = strtok(str, delim);
 	while (token)
 	{
-		arr[i++] = strdup(token);
+		arr[i++] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	arr[i] = NULL;
 
 	/* Handle the exit built-in */
-	if (strcmp(arr[0], "exit") == 0)
+	if (_strcmp(arr[0], "exit") == 0)
 		_exit_(arr, str);
 
 	return (arr);

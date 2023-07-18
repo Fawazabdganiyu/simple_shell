@@ -19,16 +19,23 @@ typedef struct list_s
 
 /* Processes */
 char **split_string(char *str, const char *delim);
-unsigned int get_words(char *s);
 void _free(char **arr);
 void _isatty();
 void search_path(char **);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
-void free_list(list_t *head);
 
 /* Actions */
 void _fork(char *program, char **arr, char **env);
+
+/* Built-in functions */
 void _exit_(char **command, char *buf);
+
+/* Helper functions */
+int _atoi(char *s);
+char *_strdup(char *str);
+int _strcmp(char *s1, char *s2);
+int _strlen(const char *s);
+unsigned int get_words(char *s);
 
 #endif /* _SHELL_H_ */
