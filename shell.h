@@ -29,5 +29,6 @@ void free_list(list_t *head);
 
 /* Actions */
 void _fork(char *program, char **arr, char **env);
+void _exit_(char **command, char *buf);
 
 #endif /* _SHELL_H_ */
