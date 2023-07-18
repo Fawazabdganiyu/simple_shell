@@ -3,7 +3,6 @@
 /**
  * _free - frees a 2D array
  * @arr: A pointer to the array
- * @i: Number of elements in the array
  */
 void _free(char **arr)
 {
