@@ -26,8 +26,7 @@ int main(int ac, char **av)
 			break;
 
 		arr = split_string(buf, delim);
-		if (strcmp(arr[0], "exit") == 0)
-			_exit_(arr, buf);
+
 		search_path(arr);
 
 		_fork(program, arr, env);
