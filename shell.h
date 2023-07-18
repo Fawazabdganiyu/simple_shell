@@ -25,8 +25,6 @@ void _isatty();
 void search_path(char **);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
-list_t *add_node_end(list_t **head, char *str);
-list_t *path_dir_list(void);
 void free_list(list_t *head);
 
 /* Actions */
