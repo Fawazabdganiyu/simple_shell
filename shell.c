@@ -19,16 +19,20 @@ int main(int ac, char **av)
 	program = av[0];
 	while (1)
 	{
+		/* Check if the input stream is from terminal */
 		_isatty();
 
-		/* Parse the commands */
+		/* Read input command */
 		if (getline(&buf, &n, stdin) == -1)
 			break;
 
+		/* parse the command and handle it properly */
 		arr = split_string(buf, delim);
 
+		/* Process the command */
 		search_path(arr);
 
+		/* Execute the input command*/
 		_fork(program, arr, env);
 	}
 	free(buf);
