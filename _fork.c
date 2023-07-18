@@ -23,7 +23,12 @@ void _fork(char *program, char **arr, char **env)
 
 	if (pid == 0)
 	{
-		execve(arr[0], arr, env);
+	/*	if (strcmp(arr[0], "exit") == 0)
+		{
+			_free(arr);
+			exit(EXIT_SUCCESS);
+		}
+	*/	execve(arr[0], arr, env);
 		perror(program);
 		_free(arr);
 		exit(EXIT_FAILURE);
