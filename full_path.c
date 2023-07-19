@@ -34,7 +34,7 @@ char *make_full_path(char *dir, char *command)
  * search_path - searches if command exists in path
  * @command: command to search
  */
-void search_path(char **command)
+void search_path(char **command, char *program, char* buf, unsigned int *n)
 {
 	char *value, *dir, *full_path = NULL, *command_cpy;
 
@@ -56,5 +56,8 @@ void search_path(char **command)
 		free(full_path);
 		dir = strtok(NULL, ":");
 	}
+
+	if (access(*command, F_OK) == -1)
+		_error(program, command, buf, n);
 	free(value);
 }

@@ -3,6 +3,8 @@
 
 extern char **environ;
 
+#define INT_BUFFER_SIZE 4
+
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -21,13 +23,13 @@ typedef struct list_s
 char **split_string(char *str, const char *delim);
 void _free(char **arr);
 void _isatty();
-void search_path(char **);
+void search_path(char **, char *program, char* buf, unsigned int *n);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 
 /* Actions */
-void _fork(char *program, char **arr, char **env);
-
+void _fork(char **arr, char **env);
+void _error(char *program, char **command, char *buf, unsigned int *n);
 /* Built-in functions */
 void _exit_(char **command, char *buf);
 
@@ -37,5 +39,6 @@ char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
 int _strlen(const char *s);
 unsigned int get_words(char *s);
+char * uint_to_str(unsigned int num);
 
 #endif /* _SHELL_H_ */

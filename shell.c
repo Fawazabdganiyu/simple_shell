@@ -14,6 +14,7 @@ int main(int ac, char **av)
 	char *buf = NULL, **arr, *delim = " \n", **env = environ;
 	size_t n = 0;
 	char *program;
+	unsigned int t = 0, *m = &t;
 
 	(void)ac;
 	program = av[0];
@@ -30,10 +31,10 @@ int main(int ac, char **av)
 		arr = split_string(buf, delim);
 
 		/* Process the command */
-		search_path(arr);
+		search_path(arr, program, buf, m);
 
 		/* Execute the input command*/
-		_fork(program, arr, env);
+		_fork(arr, env);
 	}
 
 	free(buf);
