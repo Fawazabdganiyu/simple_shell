@@ -2,13 +2,12 @@
 
 /**
  * _fork - creates a child process
- * @program: The name of the shell program
  * @arr: A pointer to an argument vector
  * @env: A pointer to environment variables
  *
  * Return: 0 on sucess, 1 otherwise
  */
-void _fork(char *program, char **arr, char **env)
+void _fork(char **arr, char **env)
 {
 	pid_t pid;
 
@@ -23,13 +22,10 @@ void _fork(char *program, char **arr, char **env)
 	if (pid == 0)
 	{
 		execve(arr[0], arr, env);
-		perror(program);
 		_free(arr);
 		exit(EXIT_FAILURE);
 	}
 
 	wait(NULL);
 	_free(arr);
-
-
 }
