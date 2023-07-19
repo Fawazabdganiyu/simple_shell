@@ -58,9 +58,8 @@ char **split_string(char *str, const char *delim)
 	}
 	arr[i] = NULL;
 
-	/* Handle the exit built-in */
-	if (_strcmp(arr[0], "exit") == 0)
-		_exit_(arr, str);
+	/* Handle the built-ins */
+	handle_builtin(arr, str);
 
 	return (arr);
 }
