@@ -28,7 +28,7 @@ void reverse(char *s)
  *
  * Return: The converted unisigned int.
  */
-char * uint_to_str(unsigned int num)
+char *uint_to_str(unsigned int num)
 {
 	int i = 0;
 	char *s;

@@ -2,7 +2,6 @@
 
 /**
  * _fork - creates a child process
- * @program: The name of the shell program
  * @arr: A pointer to an argument vector
  * @env: A pointer to environment variables
  *

@@ -4,6 +4,7 @@
  * make_full_path - concats directory  '/' and cmd
  * @dir: directory
  * @command: cmd
+ *
  * Return: full command path
  */
 char *make_full_path(char *dir, char *command)
@@ -33,8 +34,11 @@ char *make_full_path(char *dir, char *command)
 /**
  * search_path - searches if command exists in path
  * @command: command to search
+ * @program: The argument one that is used to call the main function
+ * @buf: The buffer used to accept input from stdin
+ * @n: A pointer to the number of error encountered when a command is not found
  */
-void search_path(char **command, char *program, char* buf, unsigned int *n)
+void search_path(char **command, char *program, char *buf, unsigned int *n)
 {
 	char *value, *dir, *full_path = NULL, *command_cpy;
 
