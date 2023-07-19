@@ -30,6 +30,11 @@ char *_getenv(const char *name);
 /* Actions */
 void _fork(char **arr, char **env);
 void _error(char *program, char **command, char *buf, unsigned int *n);
+void _fork(char *program, char **arr, char **env);
+
+/*Built-in handler*/
+int handle_builtin(char **command, char *buf);
+
 /* Built-in functions */
 void _exit_(char **command, char *buf);
 
