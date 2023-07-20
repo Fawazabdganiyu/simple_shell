@@ -79,15 +79,14 @@ char *_strdup(char *str)
  */
 int _strcmp(char *s1, char *s2)
 {
-        int l1 = strlen(s1), l2 = strlen(s2), count = 0;
-        if (l1 != l2)
-                return (-1);
-        for (count = 0; s1[count] && s2[count]; count++)
-        {
-                if (s1[count] != s2[count])
-                        return (-1);
-        }
-        return (0);
+	int l1 = strlen(s1), l2 = strlen(s2), count = 0;
+
+	if (l1 != l2)
+		return (-1);
+	for (count = 0; s1[count] && s2[count]; count++)
+		if (s1[count] != s2[count])
+			return (-1);
+	return (0);
 }
 
 /**

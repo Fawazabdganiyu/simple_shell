@@ -31,6 +31,7 @@ unsigned int get_words(char *s)
  *	each word of the string.
  * @str: The string to split.
  * @delim: The string delimiter
+ * @env: arr of environment variable
  *
  * Return: An array of split word.
  */
@@ -59,7 +60,8 @@ char **split_string(char *str, const char *delim, char **env)
 	arr[i] = NULL;
 
 	/* Handle the built-ins */
-	handle_builtin(arr, str, env);
+	if (check_builtin(arr) == 0)
+		handle_builtin(arr, str, env);
 
 	return (arr);
 }

@@ -26,6 +26,7 @@ void _isatty();
 void search_path(char **, char *program, char* buf, unsigned int *n);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
+int check_builtin(char **command);
 
 /* Actions */
 void _fork(char **arr, char **env);
