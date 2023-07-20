@@ -20,7 +20,7 @@ typedef struct list_s
 } list_t;
 
 /* Processes */
-char **split_string(char *str, const char *delim);
+char **split_string(char *str, const char *delim, char **env);
 void _free(char **arr);
 void _isatty();
 void search_path(char **, char *program, char* buf, unsigned int *n);
@@ -32,10 +32,11 @@ void _fork(char **arr, char **env);
 void _error(char *program, char **command, char *buf, unsigned int *n);
 
 /*Built-in handler*/
-void handle_builtin(char **command, char *buf);
+void handle_builtin(char **command, char *buf, char **env);
 
 /* Built-in functions */
 void _exit_(char **command, char *buf);
+void _printenv(char **env);
 
 /* Helper functions */
 int _atoi(char *s);
@@ -44,5 +45,6 @@ int _strcmp(char *s1, char *s2);
 int _strlen(const char *s);
 unsigned int get_words(char *s);
 char * uint_to_str(unsigned int num);
+int _strncmp(char *s1, const char *s2, size_t n);
 
 #endif /* _SHELL_H_ */

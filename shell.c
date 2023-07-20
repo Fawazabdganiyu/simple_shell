@@ -28,7 +28,7 @@ int main(int ac, char **av)
 			break;
 
 		/* parse the command and handle it properly */
-		arr = split_string(buf, delim);
+		arr = split_string(buf, delim, env);
 
 		/* Process the command */
 		search_path(arr, program, buf, m);

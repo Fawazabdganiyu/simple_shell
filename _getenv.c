@@ -17,7 +17,7 @@ char *_getenv(const char *name)
 	key_len = _strlen(name);
 	for (; *env; env++)
 	{
-		if ((strncmp(*env, name, key_len) == 0) && ((*env)[key_len] == '='))
+		if ((_strncmp(*env, name, key_len) == 0) && ((*env)[key_len] == '='))
 			return (*env + key_len + 1);
 	}
 

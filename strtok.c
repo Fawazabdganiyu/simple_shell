@@ -34,7 +34,7 @@ unsigned int get_words(char *s)
  *
  * Return: An array of split word.
  */
-char **split_string(char *str, const char *delim)
+char **split_string(char *str, const char *delim, char **env)
 {
 	char *token, **arr;
 	unsigned int n_words, i;
@@ -59,7 +59,7 @@ char **split_string(char *str, const char *delim)
 	arr[i] = NULL;
 
 	/* Handle the built-ins */
-	handle_builtin(arr, str);
+	handle_builtin(arr, str, env);
 
 	return (arr);
 }
