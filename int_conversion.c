@@ -1,5 +1,8 @@
 #include "shell.h"
 
+void reverse(char *s);
+char *uint_to_str(unsigned int num);
+
 /**
  * reverse - reverses a string
  * @s: string to reverse*

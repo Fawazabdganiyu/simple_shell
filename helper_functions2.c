@@ -1,5 +1,7 @@
 #include "shell.h"
 
+int _strncmp(char *s1, const char *s2, size_t n);
+
 /**
  * _strncmp - compare first n bytes of s1 & s2
  * @s1: first string to compare

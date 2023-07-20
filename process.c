@@ -1,5 +1,8 @@
 #include "shell.h"
 
+unsigned int get_words(char *s);
+char **split_string(char *str, const char *delim, char **env);
+
 /**
  * get_words - returns the number of words in a string
  * @s: The string to be tranversed
