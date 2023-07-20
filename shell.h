@@ -47,5 +47,8 @@ int _strlen(const char *s);
 unsigned int get_words(char *s);
 char * uint_to_str(unsigned int num);
 int _strncmp(char *s1, const char *s2, size_t n);
+int row_num(char *str);
+void _free_fail(char **arr, int n);
+char **strtow(char *str);
 
 #endif /* _SHELL_H_ */
