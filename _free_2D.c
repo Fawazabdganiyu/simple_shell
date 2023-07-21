@@ -6,9 +6,6 @@
  */
 void _free(char **arr)
 {
-	unsigned int j;
-
-	for (j = 0; arr[j]; j++)
-		free(arr[j]);
+	free(arr[0]);
 	free(arr);
 }

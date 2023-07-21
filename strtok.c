@@ -132,7 +132,7 @@ unsigned int get_words(char *s)
  */
 char **split_string(char *str, const char *delim, char **env)
 {
-	char *token, **arr = strtow(str);
+	char *token, **arr;
 	unsigned int n_words, i;
 
 	(void)n_words;
@@ -143,6 +143,7 @@ char **split_string(char *str, const char *delim, char **env)
 
 	n_words = get_words(str);
 	/* Allocate memory for an array of size nwords */
+	arr = _strtok(_strdup(str), " \n");
 	if (arr == NULL)
 		return (NULL);
 

@@ -50,5 +50,10 @@ int _strncmp(char *s1, const char *s2, size_t n);
 int row_num(char *str);
 void _free_fail(char **arr, int n);
 char **strtow(char *str);
+char **_strtok(char *str, char *delim);
+void print_arr(char **arr);
+char *get_str(char *str, char *del);
+int count_word(char *str, char *del);
+int in(char elem, char *str);
 
 #endif /* _SHELL_H_ */
