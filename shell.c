@@ -24,7 +24,7 @@ int main(int ac, char **av)
 		_isatty();
 
 		/* Read input command */
-		if (getline(&buf, &n, stdin) == -1)
+		if (_getline(&buf, &n, STDIN_FILENO) == -1)
 			break;
 
 		/* parse the command and handle it properly */

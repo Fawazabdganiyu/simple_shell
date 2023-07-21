@@ -27,6 +27,7 @@ void search_path(char **, char *program, char* buf, unsigned int *n);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 int check_builtin(char **command);
+ssize_t _getline(char **lineptr, size_t *n, int fd);
 
 /* Actions */
 void _fork(char **arr, char **env);
