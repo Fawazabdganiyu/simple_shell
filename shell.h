@@ -33,6 +33,7 @@ void handle_builtin(char **command, char *buf, char **env);
 /* Built-in functions */
 void _exit_cp(char **command, char *buf);
 void _printenv(char **env);
+int _setenv(char **env, const char *name, const char *value, int overwrite);
 
 /* Helper functions */
 int _atoi(char *s);

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * cpy_env - copies new memory of previous array of environs to a new array
@@ -71,14 +71,13 @@ char *make_env(const char *name, const char *value)
 
 /**
  * overwrite_env - overwrites an existing environment
+ * @env: The environment variable
  * @name: Environment variable key
  * @new_env: New envronment variable to overwrite with
  * @key_len: The length of the environment key
  */
-void overwrite_env(const char *name, char *new_env, size_t key_len)
+void overwrite_env(char **env, const char *name, char *new_env, size_t key_len)
 {
-	char **env = environ;
-
 	for (; *env; env++)
 	{
 		if ((strncmp(*env, name, key_len) == 0) && ((*env)[key_len] == '='))
@@ -88,15 +87,16 @@ void overwrite_env(const char *name, char *new_env, size_t key_len)
 
 /**
  * _setenv - changes or adds an environment variable
+ * @env: The environment variable
  * @name: The variable key
  * @value: The variable value
  * @overwrite: An int that specify if a variable should be overwritten or not
  *
  * Return: 0 on sucsess, or -1 on failure
  */
-int _setenv(const char *name, const char *value, int overwrite)
+int _setenv(char **env, const char *name, const char *value, int overwrite)
 {
-	char *new_env, **env = environ, **new_environ;
+	char *new_env, **new_environ;
 	size_t key_len, count;
 
 	if (name == NULL || value == NULL)
@@ -110,7 +110,7 @@ int _setenv(const char *name, const char *value, int overwrite)
 	if (_getenv(name) && overwrite)
 	{
 		/* Add new_env to environ */
-		overwrite_env(name, new_env, key_len);
+		overwrite_env(env, name, new_env, key_len);
 		free(new_env);
 		return (0);
 	}
