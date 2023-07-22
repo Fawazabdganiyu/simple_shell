@@ -65,6 +65,7 @@ char **split_string(char *str, const char *delim, char **env)
 	/* Handle the built-ins */
 	if (check_builtin(arr) == 0)
 		handle_builtin(arr, str, env);
-
-	return (arr);
+	else
+		return (arr);
+	return (NULL);
 }
