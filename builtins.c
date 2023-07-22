@@ -14,7 +14,7 @@ void handle_builtin(char **command, char *buf, char **env);
  */
 int check_builtin(char **command)
 {
-	char *builtins[] = {"exit", "env", "printenv", "setenv", NULL};
+	char *builtins[] = {"exit", "env", "printenv", "setenv", "unsetenv", NULL};
 	int i;
 
 	for (i = 0; builtins[i]; i++)
@@ -83,5 +83,13 @@ void handle_builtin(char **command, char *buf, char **env)
 			set_retval = _setenv(env, command[1], command[2], _atoi(command[3]));
 		if (set_retval == -1)
 			write(STDERR_FILENO, "Error: setenv failed\n", 21);
+	}
+
+	if (_strcmp(command[0], "unsetenv") == 0)
+	{
+		if (command[1])
+			set_retval = _unsetenv(env, command[1]);
+		if (set_retval == -1)
+			write(STDERR_FILENO, "Error: unsetenv failed\n", 23);
 	}
 }
