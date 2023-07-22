@@ -3,7 +3,8 @@
 void cpy_env(char **dest_env, char **src_env, size_t count);
 size_t count_env(char **env);
 char *make_env(const char *name, const char *value);
-void overwrite_env(char **env, const char *name, char *new_env, size_t key_len);
+void overwrite_env(char **env, const char *name, char *new_env,
+		size_t key_len);
 int _setenv(char **env, const char *name, const char *value, int overwrite);
 
 /**

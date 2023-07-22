@@ -1,10 +1,11 @@
 #include "shell.h"
 
 /**
- * cpy_env - copies new memory of previous array of environs to a new array
+ * rm_env - copies new memory of previous array of environs to a new array
  * @dest_env: New environment array
  * @src_env: previous environment array
  * @count: The number of elements in the previous environment array
+ * @position: The position of the variable to unset
  */
 void rm_env(char **dest_env, char **src_env, size_t count, size_t position)
 {
@@ -18,7 +19,13 @@ void rm_env(char **dest_env, char **src_env, size_t count, size_t position)
 	}
 }
 
-/***/
+/**
+ * getenv_position - gets the position of the variable to unset
+ * @env: The environment variable
+ * @name: The key of the variable to remove
+ *
+ * Return: The position of the variable on success, or -1 on failure
+ */
 int getenv_position(char **env, const char *name)
 {
 	size_t key_len = _strlen(name);
@@ -32,13 +39,20 @@ int getenv_position(char **env, const char *name)
 	return (-1);
 }
 
+/**
+ * _unsetenv - remove an environment variable
+ * @env: The environment variable
+ * @name: The key of the variable to be removed
+ *
+ * Return: 0 on success, -1 otherwise
+ */
 int _unsetenv(char **env, const char *name)
 {
 	char **new_env;
 	int position;
 	size_t count;
 
-	if(_getenv(name))
+	if (_getenv(name))
 	{
 		position = getenv_position(env, name);
 		if (position == -1)
@@ -59,6 +73,4 @@ int _unsetenv(char **env, const char *name)
 	}
 	else
 		return (0);
-
-
 }
