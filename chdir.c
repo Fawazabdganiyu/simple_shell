@@ -1,10 +1,10 @@
 #include "shell.h"
 
-void cd(char *new_dir)
+void cd(char **env, char *new_dir)
 {
-	size_t size = 0;
+	size_t size;
 	char *buf = NULL;
-	char *cwd = getcwd(buf, *size);
+	char *cwd = getcwd(buf, size);
 	char *home = _getenv("HOME");
 	char *old_dir = _getenv("OLDPWD");
 	char *current_dir = NULL;
@@ -23,7 +23,7 @@ void cd(char *new_dir)
 				perror("Chdir");
 	}
 	current_dir = getcwd(buf, size);
-	_setenv("PWD", current_dir, 1);
-	_setenv("OLDPWD", cwd, 1);
+	_setenv(env, "PWD", current_dir, 1);
+	_setenv(env, "OLDPWD", cwd, 1);
 	free(buf);
 }
