@@ -34,6 +34,8 @@ void handle_builtin(char **command, char *buf, char **env);
 void _exit_cp(char **command, char *buf);
 void _printenv(char **env);
 void cd (char *new_dir);
+int _setenv(char **env, const char *name, const char *value, int overwrite);
+int _unsetenv(char **env, const char *name);
 
 /* Helper functions */
 int _atoi(char *s);
@@ -43,5 +45,6 @@ int _strlen(const char *s);
 unsigned int get_words(char *s);
 char *uint_to_str(unsigned int num);
 int _strncmp(char *s1, const char *s2, size_t n);
+size_t count_env(char **env);
 
 #endif /* _SHELL_H_ */
