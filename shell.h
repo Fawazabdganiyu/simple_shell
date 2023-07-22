@@ -13,17 +13,11 @@ extern char **environ;
 #include <string.h>
 #include <unistd.h>
 
-typedef struct list_s
-{
-	char *str;
-	struct list_s *next;
-} list_t;
-
 /* Processes */
 char **split_string(char *str, const char *delim, char **env);
 void _free(char **arr);
-void _isatty();
-void search_path(char **, char *program, char* buf, unsigned int *n);
+void _isatty(void);
+void search_path(char **, char *program, char *buf, unsigned int *n);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 int check_builtin(char **command);
@@ -37,7 +31,7 @@ void _error(char *program, char **command, char *buf, unsigned int *n);
 void handle_builtin(char **command, char *buf, char **env);
 
 /* Built-in functions */
-void _exit_(char **command, char *buf);
+void _exit_cp(char **command, char *buf);
 void _printenv(char **env);
 
 /* Helper functions */
@@ -46,7 +40,7 @@ char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
 int _strlen(const char *s);
 unsigned int get_words(char *s);
-char * uint_to_str(unsigned int num);
+char *uint_to_str(unsigned int num);
 int _strncmp(char *s1, const char *s2, size_t n);
 
 #endif /* _SHELL_H_ */

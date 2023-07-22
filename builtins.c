@@ -2,7 +2,7 @@
 
 int check_builtin(char **command);
 void _printenv(char **env);
-void _exit_(char **command, char *buf);
+void _exit_cp(char **command, char *buf);
 void handle_builtin(char **command, char *buf, char **env);
 
 /**
@@ -33,21 +33,21 @@ void _printenv(char **env)
 {
 	(void)env;
 /**
-*	int i;
-*
-*	for (i = 0; env[i] != NULL; i++)
-*	{
-*		printf("%s\n", env[i]);
-*	}
-*/
+ *	int i;
+ *
+ *	for (i = 0; env[i] != NULL; i++)
+ *	{
+ *		printf("%s\n", env[i]);
+ *	}
+ */
 }
 
 /**
- * _exit_ - terminates the calling process
+ * _exit_cp() - terminates the calling process
  * @command: A pointer to an array of character pointers  passed to the program
  * @buf: A temporary buffer used by the program
  */
-void _exit_(char **command, char *buf)
+void _exit_cp(char **command, char *buf)
 {
 	unsigned int status = 0;
 	char *exit_status;
@@ -73,8 +73,10 @@ void handle_builtin(char **command, char *buf, char **env)
 {
 	(void)env;
 	if (_strcmp(command[0], "exit") == 0)
-		_exit_(command, buf);
-/**	if (_strcmp(command[0], "env") == 0 || _strcmp(command[0], "printenv") == 0)
-*		_printenv(env);
-*/
+		_exit_cp(command, buf);
+/*
+ *	if (_strcmp(command[0], "env") == 0 ||
+ *  _strcmp(command[0], "printenv") == 0)
+ *		_printenv(env);
+ */
 }
