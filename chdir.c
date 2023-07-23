@@ -9,7 +9,6 @@ void cd(char **env, char *new_dir)
 	char *old_dir = _getenv("OLDPWD");
 	char *current_dir = NULL;
 
-	(void)env;
 	if (new_dir != NULL)
 	{
 		if ((_strcmp(new_dir, "-") == 0))
@@ -25,7 +24,7 @@ void cd(char **env, char *new_dir)
 			perror("Chdir");
 
 	current_dir = getcwd(buf, size);
-	setenv("PWD", current_dir, 1);
-	setenv("OLDPWD", cwd, 1);
+	_setenv(env, "PWD", current_dir, 1);
+	_setenv(env, "OLDPWD", cwd, 1);
 	free(buf);
 }
