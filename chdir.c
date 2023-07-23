@@ -7,10 +7,9 @@
  */
 void cd(char **env, char *new_dir)
 {
-	size_t size, size_2;
-	char *buf = NULL;
-	char *buf_2 = NULL;
-	char *cwd = getcwd(buf, size);
+	char buf[1024];
+	char buf_2[1024];
+	char *cwd = getcwd(buf, BUFFER);
 	char *home = _getenv("HOME");
 	char *old_dir = _getenv("OLDPWD");
 	char *current_dir = NULL;
@@ -28,9 +27,7 @@ void cd(char **env, char *new_dir)
 	else
 		if (chdir(home) == -1)
 			perror("Chdir");
-	current_dir = getcwd(buf_2, size_2);
+	current_dir = getcwd(buf_2, BUFFER);
 	_setenv(env, "PWD", current_dir, 1);
 	_setenv(env, "OLDPWD", cwd, 1);
-	free(buf);
-	free(buf_2);
 }

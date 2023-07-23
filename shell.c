@@ -32,11 +32,12 @@ int main(int ac, char **av)
 
 		/* Process the command */
 		if (arr)
+		{
 			search_path(arr, program, buf, m);
 
-		/* Execute the input command*/
-		if (arr)
+			/* Execute the input command*/
 			_fork(arr, env);
+		}
 	}
 
 	free(buf);

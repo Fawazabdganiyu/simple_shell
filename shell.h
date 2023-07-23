@@ -4,6 +4,7 @@
 extern char **environ;
 
 #define INT_BUFFER_SIZE 4
+#define BUFFER 1024
 
 #include <sys/types.h>
 #include <sys/wait.h>
