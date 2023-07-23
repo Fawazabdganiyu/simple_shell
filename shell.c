@@ -31,10 +31,12 @@ int main(int ac, char **av)
 		arr = split_string(buf, delim, env);
 
 		/* Process the command */
-		search_path(arr, program, buf, m);
+		if (arr)
+			search_path(arr, program, buf, m);
 
 		/* Execute the input command*/
-		_fork(arr, env);
+		if (arr)
+			_fork(arr, env);
 	}
 
 	free(buf);
