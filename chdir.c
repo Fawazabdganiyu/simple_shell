@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * cd - changes directory
+ * @env: environ to edit
+ * @new_dir: new directory to switch to
+ */
 void cd(char **env, char *new_dir)
 {
 	size_t size = 0;

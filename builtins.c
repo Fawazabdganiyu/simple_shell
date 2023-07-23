@@ -14,7 +14,8 @@ void handle_builtin(char **command, char *buf, char **env);
  */
 int check_builtin(char **command)
 {
-	char *builtins[] = {"exit", "env", "printenv", "setenv", "cd", "unsetenv", NULL};
+	char *builtins[] = {"exit", "env", "printenv", "setenv", "cd",
+		"unsetenv", NULL};
 	int i;
 
 	for (i = 0; builtins[i]; i++)
