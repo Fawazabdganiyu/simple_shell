@@ -6,6 +6,8 @@ extern char **environ;
 #define INT_BUFFER_SIZE 4
 #define BUFFER 1024
 
+typedef unsigned int u_int;
+
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -15,7 +17,7 @@ extern char **environ;
 #include <unistd.h>
 
 /* Processes */
-char **split_string(char *str, const char *delim, char **env);
+char **split_string(char *str, const char *delim);
 void _free(char **arr);
 void _isatty(void);
 void search_path(char **, char *program, char *buf, unsigned int *n);
@@ -23,6 +25,7 @@ char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 int check_builtin(char **command);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
+void handle_command(char **arr, char **env, char *buf, char *program, u_int *m);
 
 /* Actions */
 void _fork(char **arr, char **env);
