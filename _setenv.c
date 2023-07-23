@@ -1,12 +1,5 @@
 #include "shell.h"
 
-void cpy_env(char **dest_env, char **src_env, size_t count);
-size_t count_env(char **env);
-char *make_env(const char *name, const char *value);
-void overwrite_env(char **env, const char *name, char *new_env,
-		size_t key_len);
-int _setenv(char **env, const char *name, const char *value, int overwrite);
-
 /**
  * cpy_env - copies new memory of previous array of environs to a new array
  * @dest_env: New environment array
@@ -87,8 +80,8 @@ void overwrite_env(char **env, const char *name, char *new_env, size_t key_len)
 {
 	for (; *env; env++)
 	{
-		if ((_strncmp(*env, name, key_len) == 0) && ((*env)[key_len] == '='))
-			*env = new_env;
+		if ((strncmp(*env, name, key_len) == 0) && ((*env)[key_len] == '='))
+			_strcpy(*env, new_env);
 	}
 }
 
@@ -108,7 +101,7 @@ int _setenv(char **env, const char *name, const char *value, int overwrite)
 
 	if (name == NULL || value == NULL)
 		return (-1);
-	key_len = _strlen(name);
+	key_len = strlen(name);
 	/* Check the environ for the name */
 	if (_getenv(name) && !overwrite)
 		return (0);
@@ -132,7 +125,7 @@ int _setenv(char **env, const char *name, const char *value, int overwrite)
 			return (-1);
 		}
 		cpy_env(new_environ, env, count);
-		new_environ[count] = new_env;
+		_strcpy(new_environ[count], new_env);
 		new_environ[count + 1] = NULL;
 		/* Update environ to new_environ */
 		env = new_environ;
