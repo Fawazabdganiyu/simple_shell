@@ -132,7 +132,7 @@ int _setenv(char **env, const char *name, const char *value, int overwrite)
 			return (-1);
 		}
 		cpy_env(new_environ, env, count);
-		new_environ[count] = new_env;
+		strcpy(new_environ[count], new_env);
 		new_environ[count + 1] = NULL;
 		/* Update environ to new_environ */
 		env = new_environ;
