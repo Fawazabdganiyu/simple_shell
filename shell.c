@@ -31,8 +31,7 @@ int main(int ac, char **av)
 
 		/* parse the command and handle it properly */
 		sep_arr = split_string(buf, ";\n");
-		for (i = 0; sep_arr[i]; i++)
-			printf("sep_arr ==> %s\n", sep_arr[i]);
+
 		for (i = 0; sep_arr[i]; i++)
 		{
 			arr = split_string(sep_arr[i], delim);
