@@ -11,11 +11,11 @@
  * usually first word in buf and arr
  * @m: (i literally don't know it use :)
  */
-void handle_command(char **arr, char **env, char *buf, char *program, u_int *m)
+void handle_command(char **arr, char **env, char *buf, char *program, u_int *m, char **sep_arr)
 {
 	if (check_builtin(arr) == 0)
 	{
-		handle_builtin(arr, buf, env);
+		handle_builtin(arr, buf, env, sep_arr);
 		_free(arr);
 	}
 	/* Process the command */

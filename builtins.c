@@ -2,8 +2,8 @@
 
 int check_builtin(char **command);
 void _printenv(char **env);
-void _exit_cp(char **command, char *buf);
-void handle_builtin(char **command, char *buf, char **env);
+void _exit_cp(char **command, char *buf, char **sep_arr);
+void handle_builtin(char **command, char *buf, char **env, char ** sep_arr);
 
 /**
  * check_builtin - checks if a command is part of
@@ -45,7 +45,7 @@ void _printenv(char **env)
  * @command: A pointer to an array of character pointers  passed to the program
  * @buf: A temporary buffer used by the program
  */
-void _exit_cp(char **command, char *buf)
+void _exit_cp(char **command, char *buf, char **sep_arr)
 {
 	unsigned int status = 0;
 	char *exit_status;
@@ -58,6 +58,7 @@ void _exit_cp(char **command, char *buf)
 
 	free(buf);
 	_free(command);
+	_free(sep_arr);
 	_exit(status);
 }
 
@@ -67,12 +68,12 @@ void _exit_cp(char **command, char *buf)
  * @buf: passed buf to free
  * @env: to printenv
  */
-void handle_builtin(char **command, char *buf, char **env)
+void handle_builtin(char **command, char *buf, char **env, char **sep_arr)
 {
 	int set_retval = 0;
 
 	if (_strcmp(command[0], "exit") == 0)
-		_exit_cp(command, buf);
+		_exit_cp(command, buf, sep_arr);
 
 	if (_strcmp(command[0], "cd") == 0)
 		cd(env, command[1]);

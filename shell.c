@@ -36,7 +36,7 @@ int main(int ac, char **av)
 			arr = split_string(sep_arr[i], delim);
 
 		/* Handle the comands <see handle_command.c for description>*/
-			handle_command(arr, env, buf, program, m);
+			handle_command(arr, env, buf, program, m, sep_arr);
 		}
 		_free(sep_arr);
 
