@@ -14,8 +14,8 @@
  */
 ssize_t _getline(char **lineptr, size_t *n, int fd)
 {
-	size_t nread = 0, c;
-	size_t buf_size = *n;
+	static ssize_t nread;
+	ssize_t buf_size = (*n > 0) ? *n : INITIAL_SIZE, ret;
 	char *new_ptr;
 
 	if (*lineptr == NULL || buf_size == 0)
@@ -23,11 +23,10 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		*lineptr = malloc(sizeof(char) * INITIAL_SIZE);
 		if (*lineptr == NULL)
 			return (-1);
-		buf_size = INITIAL_SIZE;
 	}
-
-	while ((c = read(fd, &(*lineptr)[nread++], ONE_BYTE)) > 0)
+	while ((ret = read(fd, &(*lineptr)[nread], ONE_BYTE)) > 0)
 	{
+		nread++;
 		/* Reallocate if the malloc'ed is not sufficient */
 		if (nread >= buf_size)
 		{
@@ -38,12 +37,12 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 			*lineptr = new_ptr;
 		}
 		/* Detect if a new line is read and initialise */
-		/* the next character '\0' then return */
 		if ((*lineptr)[nread - 1] == '\n')
 		{
 			(*lineptr)[nread] = '\0';
 			*n = nread;
-			return (nread);
+			nread = 0;
+			return (*n);
 		}
 	}
 	/* Return what has been read on EOF */
@@ -51,7 +50,8 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 	{
 		(*lineptr)[nread] = '\0';
 		*n = nread;
-		return (nread);
+		nread = 0;
+		return (*n);
 	}
 	return (-1);
 }

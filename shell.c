@@ -12,7 +12,6 @@
 int main(int ac, char **av)
 {
 	char *buf = NULL, **arr, *delim = " \n", **env = environ;
-	/*In case of memory leak confirm that sep_arr has been freed everywhere :)*/
 	char **sep_arr;
 	size_t n = 0;
 	char *program;
