@@ -3,7 +3,7 @@
 int check_builtin(char **command);
 void _printenv(char **env);
 void _exit_cp(char **command, char *buf, char **sep_arr);
-void handle_builtin(char **command, char *buf, char **env, char ** sep_arr);
+void handle_builtin(char **command, char *buf, char **env, char **sep_arr);
 
 /**
  * check_builtin - checks if a command is part of
@@ -44,6 +44,7 @@ void _printenv(char **env)
  * _exit_cp - terminates the calling process
  * @command: A pointer to an array of character pointers  passed to the program
  * @buf: A temporary buffer used by the program
+ * @sep_arr: An array of ; separated commands.
  */
 void _exit_cp(char **command, char *buf, char **sep_arr)
 {
@@ -67,6 +68,7 @@ void _exit_cp(char **command, char *buf, char **sep_arr)
  * @command: pointer to command to compare
  * @buf: passed buf to free
  * @env: to printenv
+ * @sep_arr: An array of ; separated commands.
  */
 void handle_builtin(char **command, char *buf, char **env, char **sep_arr)
 {

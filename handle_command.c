@@ -9,9 +9,11 @@
  * string passed in by user
  * @program: name of program being run
  * usually first word in buf and arr
- * @m: (i literally don't know it use :)
+ * @m: A pointer to shell program error counter.
+ * @sep_arr: An array of ';' separated commands.
  */
-void handle_command(char **arr, char **env, char *buf, char *program, u_int *m, char **sep_arr)
+void handle_command(char **arr, char **env, char *buf, char *program,
+		u_int *m, char **sep_arr)
 {
 	if (check_builtin(arr) == 0)
 	{
