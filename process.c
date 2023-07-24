@@ -1,7 +1,7 @@
 #include "shell.h"
 
 unsigned int get_words(char *s);
-char **split_string(char *str, const char *delim, char **env);
+char **split_string(char *str, const char *delim);
 
 /**
  * get_words - returns the number of words in a string
@@ -34,11 +34,10 @@ unsigned int get_words(char *s)
  *	each word of the string.
  * @str: The string to split.
  * @delim: The string delimiter
- * @env: arr of environment variable
  *
  * Return: An array of split word.
  */
-char **split_string(char *str, const char *delim, char **env)
+char **split_string(char *str, const char *delim)
 {
 	char *token, **arr;
 	unsigned int n_words, i;
@@ -62,13 +61,5 @@ char **split_string(char *str, const char *delim, char **env)
 	}
 	arr[i] = NULL;
 
-	/* Handle the built-ins */
-	if (check_builtin(arr) == 0)
-	{
-		handle_builtin(arr, str, env);
-		_free(arr);
-	}
-	else
-		return (arr);
-	return (NULL);
+	return (arr);
 }

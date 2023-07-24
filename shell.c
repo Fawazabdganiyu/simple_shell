@@ -12,9 +12,11 @@
 int main(int ac, char **av)
 {
 	char *buf = NULL, **arr, *delim = " \n", **env = environ;
+	/*In case of memory leak confirm that sep_arr has been freed everywhere :)*/
+	char **sep_arr;
 	size_t n = 0;
 	char *program;
-	unsigned int t = 0, *m = &t;
+	unsigned int t = 0, *m = &t, i;
 
 	(void)ac;
 	program = av[0];
@@ -28,16 +30,18 @@ int main(int ac, char **av)
 			break;
 
 		/* parse the command and handle it properly */
-		arr = split_string(buf, delim, env);
-
-		/* Process the command */
-		if (arr)
+		sep_arr = split_string(buf, ";\n");
+		for (i = 0; sep_arr[i]; i++)
+			printf("sep_arr ==> %s\n", sep_arr[i]);
+		for (i = 0; sep_arr[i]; i++)
 		{
-			search_path(arr, program, buf, m);
+			arr = split_string(sep_arr[i], delim);
 
-			/* Execute the input command*/
-			_fork(arr, env);
+		/* Handle the comands <see handle_command.c for description>*/
+			handle_command(arr, env, buf, program, m, sep_arr);
 		}
+		_free(sep_arr);
+
 	}
 
 	free(buf);
