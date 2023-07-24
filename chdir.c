@@ -17,8 +17,11 @@ void cd(char **env, char *new_dir)
 	if (new_dir != NULL)
 	{
 		if ((_strcmp(new_dir, "-") == 0))
+		{
 			if (chdir(old_dir) == -1)
 				perror("Chdir");
+			printf("%s\n", old_dir);
+		}
 
 		if ((_strcmp(new_dir, "-") != 0))
 			if (chdir(new_dir) == -1)
