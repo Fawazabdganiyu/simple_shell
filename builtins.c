@@ -85,32 +85,37 @@ void handle_builtin(char **command, char *buf, char **env,
 			_strcmp(command[0], "printenv") == 0)
 		_printenv(env); /*Setenv*/
 	if (_strcmp(command[0], "setenv") == 0)
+		_printenv(env);
+
+	if ((_strcmp(command[0], "setenv") == 0) && command[1] &&
+			command[2] && command[3])
 	{
-		if (command[1] && command[2] && command[3])
-			set_retval = _setenv(env, command[1], command[2], _atoi(command[3]));
+		set_retval = _setenv(env, command[1], command[2], _atoi(command[3]));
 		if (set_retval == -1)
 			write(STDERR_FILENO, "Error: setenv failed\n", 21);
 	} /*Unsetenv*/
 	if (_strcmp(command[0], "unsetenv") == 0)
+	}
+
+	if ((_strcmp(command[0], "unsetenv") == 0) && command[1])
 	{
-		if (command[1])
-			set_retval = _unsetenv(env, command[1]);
+		set_retval = _unsetenv(env, command[1]);
 		if (set_retval == -1)
 			write(STDERR_FILENO, "Error: unsetenv failed\n", 23);
-	}
-	if (_strcmp(command[0], "echo") == 0 && command[1])
+	} /*Echo*/
+	if ((_strcmp(command[0], "echo") == 0) && command[1])
 	{
-		if (command[1][1] == '?')
+		if ((command[1][0] == '$') && (command[1][1] == '?'))
 			_echo_status(status);
-		else if (command[1][1] == '$')
-		{
+		else if ((command[1][0] == '$') && (command[1][1] == '$'))
 			_getpid();
-			putchar('\n');
-		}
-		else
+		else if ((command[1][0] == '$') && ((command[1][1] != '?') ||
+					(command[1][1] != '$')))
 		{
 			_puts(_getenv(&(command[1][1])));
 			_putchar('\n');
 		}
+		else
+			_puts(command[1]);
 	}
 }

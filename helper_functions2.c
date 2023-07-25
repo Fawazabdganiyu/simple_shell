@@ -31,11 +31,11 @@ int _strncmp(char *s1, const char *s2, size_t n)
 int xs_space(char *str)
 {
 	int i;
+
 	for (i = 0; str[i] && str[i] != '\n'; i++)
 	{
 		if (str[i] != ' ')
 			return (0);
 	}
-	
-	return -1;
+	return (-1);
 }
