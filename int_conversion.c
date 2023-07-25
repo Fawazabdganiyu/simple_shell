@@ -80,6 +80,7 @@ int put_int(int num)
 	str[i++] = '\0';
 	reverse(str);
 	count = _puts(str);
+	free(str);
 	return (count);
 }
 
