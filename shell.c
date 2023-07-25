@@ -30,6 +30,8 @@ int main(int ac, char **av)
 			break;
 
 		/* parse the command and handle it properly */
+		if (xs_space(buf) == -1)
+			continue;
 		sep_arr = split_string(buf, ";\n");
 
 		for (i = 0; sep_arr[i]; i++)

@@ -78,23 +78,19 @@ void handle_builtin(char **command, char *buf, char **env,
 	int set_retval = 0;
 
 	if (_strcmp(command[0], "exit") == 0)
-		_exit_cp(command, buf, sep_arr);
-
+		_exit_cp(command, buf, sep_arr); /* cd*/
 	if (_strcmp(command[0], "cd") == 0)
-		cd(env, command[1]);
-
+		cd(env, command[1]); /*Env*/
 	if (_strcmp(command[0], "env") == 0 ||
 			_strcmp(command[0], "printenv") == 0)
-		_printenv(env);
-
+		_printenv(env); /*Setenv*/
 	if (_strcmp(command[0], "setenv") == 0)
 	{
 		if (command[1] && command[2] && command[3])
 			set_retval = _setenv(env, command[1], command[2], _atoi(command[3]));
 		if (set_retval == -1)
 			write(STDERR_FILENO, "Error: setenv failed\n", 21);
-	}
-
+	} /*Unsetenv*/
 	if (_strcmp(command[0], "unsetenv") == 0)
 	{
 		if (command[1])
