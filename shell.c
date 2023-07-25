@@ -12,7 +12,7 @@
 int main(int ac, char **av)
 {
 	char *buf = NULL, **arr, *delim = " \n", **env = environ;
-	char **sep_arr;
+	char **sep_arr, *temp;
 	size_t n = 0;
 	char *program;
 	unsigned int t = 0, *m = &t, i;
@@ -28,6 +28,10 @@ int main(int ac, char **av)
 		if (_getline(&buf, &n, STDIN_FILENO) == -1)
 			break;
 
+		/* Break string at point *str = #*/
+		temp = buf;
+		buf = break_string(buf, "#\n");
+		free(temp);
 		/* parse the command and handle it properly */
 		sep_arr = split_string(buf, ";\n");
 
@@ -36,11 +40,6 @@ int main(int ac, char **av)
 		{
 			/*ls k pt*/
 			arr = split_string(sep_arr[i], delim);
-			if (arr[0][0] == '#')
-			{
-				_free(arr);
-				break;
-			}
 
 		/* Handle the comands <see handle_command.c for description>*/
 			handle_command(arr, env, buf, program, m, sep_arr);

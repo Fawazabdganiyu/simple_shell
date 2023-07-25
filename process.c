@@ -2,6 +2,7 @@
 
 unsigned int get_words(char *s);
 char **split_string(char *str, const char *delim);
+char *break_string(char *str, const char *delim);
 
 /**
  * get_words - returns the number of words in a string
@@ -62,4 +63,25 @@ char **split_string(char *str, const char *delim)
 	arr[i] = NULL;
 
 	return (arr);
+}
+
+char *break_string(char *str, const char *delim)
+{
+	int i;
+	char *broken_str;
+
+	for (i = 0; str[i] != delim[0] && str[i] != delim[1] && str[i]; i++)
+		;
+	/*Allocate memory of how many char up to delim*/
+	broken_str = malloc(sizeof(char) * i + 1);
+	if (broken_str == NULL)
+		return (NULL);
+
+	/*copy all characters before delim into broken_str and null terminate*/
+	for (i = 0; str[i] != delim[0] && str[i] != delim[1] && str[i]; i++)
+		broken_str[i] = str[i];
+	broken_str[i] = '\0';
+
+	return (broken_str);
+
 }
