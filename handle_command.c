@@ -11,13 +11,14 @@
  * usually first word in buf and arr
  * @m: A pointer to shell program error counter.
  * @sep_arr: An array of ';' separated commands.
+ * @status: The integer value of the return status
  */
 void handle_command(char **arr, char **env, char *buf, char *program,
-		u_int *m, char **sep_arr)
+		u_int *m, char **sep_arr, int *status)
 {
 	if (check_builtin(arr) == 0)
 	{
-		handle_builtin(arr, buf, env, sep_arr);
+		handle_builtin(arr, buf, env, sep_arr, status);
 		_free(arr);
 	}
 	/* Process the command */
@@ -26,6 +27,6 @@ void handle_command(char **arr, char **env, char *buf, char *program,
 		search_path(arr, program, buf, m);
 
 		/* Execute the input command*/
-		_fork(arr, env);
+		_fork(arr, env, status);
 	}
 }

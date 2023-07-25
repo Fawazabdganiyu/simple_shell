@@ -4,10 +4,10 @@
  * _fork - creates a child process
  * @arr: A pointer to an argument vector
  * @env: A pointer to environment variables
+ * @status: The integer value of the return status
  *
- * Return: 0 on sucess, 1 otherwise
  */
-void _fork(char **arr, char **env)
+void _fork(char **arr, char **env, int *status)
 {
 	pid_t pid;
 
@@ -26,6 +26,6 @@ void _fork(char **arr, char **env)
 		exit(EXIT_FAILURE);
 	}
 
-	wait(NULL);
+	wait(status);
 	_free(arr);
 }
