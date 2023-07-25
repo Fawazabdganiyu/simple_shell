@@ -10,8 +10,7 @@ void _getpid(void)
 	my_pid = (unsigned int)getpid();
 
 /*	put_u_int(my_pid); */
-	printf("%u\n", my_pid);
-/*	_putchar('\n'); */
+	printf("%u", my_pid);
 }
 
 /**
