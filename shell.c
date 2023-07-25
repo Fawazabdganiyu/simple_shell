@@ -16,6 +16,7 @@ int main(int ac, char **av)
 	size_t n = 0;
 	char *program;
 	unsigned int t = 0, *m = &t, i;
+	int status;
 
 	(void)ac;
 	program = av[0];
@@ -36,7 +37,7 @@ int main(int ac, char **av)
 			arr = split_string(sep_arr[i], delim);
 
 		/* Handle the comands <see handle_command.c for description>*/
-			handle_command(arr, env, buf, program, m, sep_arr);
+			handle_command(arr, env, buf, program, m, sep_arr, &status);
 		}
 		_free(sep_arr);
 

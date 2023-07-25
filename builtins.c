@@ -3,7 +3,8 @@
 int check_builtin(char **command);
 void _printenv(char **env);
 void _exit_cp(char **command, char *buf, char **sep_arr);
-void handle_builtin(char **command, char *buf, char **env, char **sep_arr);
+void handle_builtin(char **command, char *buf, char **env,
+		char **sep_arr, int *status);
 
 /**
  * check_builtin - checks if a command is part of
@@ -15,7 +16,7 @@ void handle_builtin(char **command, char *buf, char **env, char **sep_arr);
 int check_builtin(char **command)
 {
 	char *builtins[] = {"exit", "env", "printenv", "setenv", "cd",
-		"unsetenv", NULL};
+		"unsetenv", "echo", NULL};
 	int i;
 
 	for (i = 0; builtins[i]; i++)
@@ -69,8 +70,10 @@ void _exit_cp(char **command, char *buf, char **sep_arr)
  * @buf: passed buf to free
  * @env: to printenv
  * @sep_arr: An array of ; separated commands.
+ * @status: The integer value of the return status
  */
-void handle_builtin(char **command, char *buf, char **env, char **sep_arr)
+void handle_builtin(char **command, char *buf, char **env,
+		char **sep_arr, int *status)
 {
 	int set_retval = 0;
 
@@ -98,5 +101,17 @@ void handle_builtin(char **command, char *buf, char **env, char **sep_arr)
 			set_retval = _unsetenv(env, command[1]);
 		if (set_retval == -1)
 			write(STDERR_FILENO, "Error: unsetenv failed\n", 23);
+	}
+	if (_strcmp(command[0], "echo") == 0 && command[1])
+	{
+		if (command[1][1] == '?')
+			_echo_status(status);
+		else if (command[1][1] == '$')
+			_getpid();
+		else
+		{
+			_puts(_getenv(&(command[1][1])));
+			_putchar('\n');
+		}
 	}
 }

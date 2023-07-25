@@ -35,8 +35,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 			if (!new_ptr)
 				return (-1);
 			*lineptr = new_ptr;
-		}
-		/* Detect if a new line is read and initialise */
+		} /* Detect if a new line is read and return */
 		if ((*lineptr)[nread - 1] == '\n')
 		{
 			(*lineptr)[nread] = '\0';
