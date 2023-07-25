@@ -53,6 +53,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		nread = 0;
 		return (*n);
 	}
+	putchar('\n');
 	return (-1);
 }
 
