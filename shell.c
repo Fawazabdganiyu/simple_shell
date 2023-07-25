@@ -30,21 +30,17 @@ int main(int ac, char **av)
 
 		/* parse the command and handle it properly */
 		sep_arr = split_string(buf, ";\n");
-		if (sep_arr[0][0] == '#')
-		{
-			_free(sep_arr);
-			continue;
-		}
 
+		/* break for loop and resume main loop if '#' comment indicator*/
 		for (i = 0; sep_arr[i]; i++)
 		{
 			/*ls k pt*/
 			arr = split_string(sep_arr[i], delim);
 			if (arr[0][0] == '#')
-                	{
-                        	_free(arr);
-	                        continue;
-        	        }
+			{
+				_free(arr);
+				break;
+			}
 
 		/* Handle the comands <see handle_command.c for description>*/
 			handle_command(arr, env, buf, program, m, sep_arr);
