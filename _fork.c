@@ -7,7 +7,7 @@
  *
  * Return: 0 on sucess, 1 otherwise
  */
-void _fork(char **arr, char **env)
+int _fork(char **arr, char **env)
 {
 	pid_t pid;
 
@@ -23,9 +23,10 @@ void _fork(char **arr, char **env)
 	{
 		execve(arr[0], arr, env);
 		_free(arr);
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 
 	wait(NULL);
 	_free(arr);
+	return (-1);
 }

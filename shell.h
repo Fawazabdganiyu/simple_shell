@@ -25,10 +25,11 @@ char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 int check_builtin(char **command);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
-void handle_command(char **arr, char **env, char *buf, char *program, u_int *m, char **sep_arr);
+int handle_command(char **arr, char **env, char *buf, char *program, u_int *m, char **sep_arr);
+int log_op_in(char *log_op, char *str);
 
 /* Actions */
-void _fork(char **arr, char **env);
+int _fork(char **arr, char **env);
 void _error(char *program, char **command, char *buf, unsigned int *n);
 
 /*Built-in handler*/

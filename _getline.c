@@ -44,8 +44,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 			nread = 0;
 			return (*n);
 		}
-	}
-	/* Return what has been read on EOF */
+	} /* Return what has been read on EOF */
 	if (nread > 0)
 	{
 		(*lineptr)[nread] = '\0';

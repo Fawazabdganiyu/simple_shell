@@ -1,6 +1,26 @@
 #include "shell.h"
 
 int _strncmp(char *s1, const char *s2, size_t n);
+int log_op_in(char *log_op, char *str);
+
+/**
+ * log_op_in - checks if a specific logical operator is in a str
+ * @log_op: logical operator to search for
+ * @str: string to search through
+ * Return: Number of times logical operator appears in string
+ */
+int log_op_in(char *log_op, char *str)
+{
+	int log = 0, i, retval = 0;
+	for (i = 0; str[i]; i++)
+	{
+		if (log && str[i] == log_op[0])
+			retval++;
+		if (!log && str[i] == log_op[0])
+			log = 1;
+	}
+	return (retval);
+}
 
 /**
  * _strncmp - compare first n bytes of s1 & s2

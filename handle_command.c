@@ -11,11 +11,13 @@
  * usually first word in buf and arr
  * @m: A pointer to shell program error counter.
  * @sep_arr: An array of ';' separated commands.
+ * Return: 0 on success | 1 on failure
  */
-void handle_command(char **arr, char **env, char *buf, char *program,
+int handle_command(char **arr, char **env, char *buf, char *program,
 		u_int *m, char **sep_arr)
 {
-	if (check_builtin(arr) == 0)
+	int builtin = check_builtin(arr), exec = 0;
+	if (builtin == 0)
 	{
 		handle_builtin(arr, buf, env, sep_arr);
 		_free(arr);
@@ -26,6 +28,8 @@ void handle_command(char **arr, char **env, char *buf, char *program,
 		search_path(arr, program, buf, m);
 
 		/* Execute the input command*/
-		_fork(arr, env);
+		exec = _fork(arr, env);
 	}
+
+	return (builtin != 0 && exec == -1);
 }
