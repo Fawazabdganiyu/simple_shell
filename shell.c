@@ -28,6 +28,8 @@ int main(int ac, char **av)
 		/* Read input command */
 		if (_getline(&buf, &n, STDIN_FILENO) == -1)
 			break;
+		if (buf[0] == ' ')
+			continue;
 
 		/* parse the command and handle it properly */
 		sep_arr = split_string(buf, ";\n");
@@ -40,6 +42,7 @@ int main(int ac, char **av)
 			handle_command(arr, env, buf, program, m, sep_arr, &status);
 		}
 		_free(sep_arr);
+
 
 	}
 
