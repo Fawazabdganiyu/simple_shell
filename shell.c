@@ -28,10 +28,10 @@ int main(int ac, char **av)
 		/* Read input command */
 		if (_getline(&buf, &n, STDIN_FILENO) == -1)
 			break;
-		if (buf[0] == ' ')
-			continue;
 
 		/* parse the command and handle it properly */
+
+		/* Check for only space in str*/
 		if (xs_space(buf) == -1)
 			continue;
 		sep_arr = split_string(buf, ";\n");

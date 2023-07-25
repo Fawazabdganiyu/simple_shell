@@ -94,9 +94,6 @@ void handle_builtin(char **command, char *buf, char **env,
 		if (set_retval == -1)
 			write(STDERR_FILENO, "Error: setenv failed\n", 21);
 	} /*Unsetenv*/
-	if (_strcmp(command[0], "unsetenv") == 0)
-	}
-
 	if ((_strcmp(command[0], "unsetenv") == 0) && command[1])
 	{
 		set_retval = _unsetenv(env, command[1]);
