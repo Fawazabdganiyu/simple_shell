@@ -107,7 +107,10 @@ void handle_builtin(char **command, char *buf, char **env,
 		if (command[1][1] == '?')
 			_echo_status(status);
 		else if (command[1][1] == '$')
+		{
 			_getpid();
+			putchar('\n');
+		}
 		else
 		{
 			_puts(_getenv(&(command[1][1])));
