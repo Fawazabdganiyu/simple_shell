@@ -10,7 +10,9 @@
 void _fork(char **arr, char **env, int *status)
 {
 	pid_t pid;
-
+/*	int st;
+*/
+	(void)status;
 	pid = fork();
 	if (pid == -1)
 	{
@@ -26,6 +28,8 @@ void _fork(char **arr, char **env, int *status)
 		exit(EXIT_FAILURE);
 	}
 
-	wait(status);
-	_free(arr);
+	wait(NULL);
+/*	if (st != 0)
+		*status = 2;
+*/	_free(arr);
 }

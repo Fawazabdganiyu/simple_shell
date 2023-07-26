@@ -2,7 +2,7 @@
 
 int check_builtin(char **command);
 void _printenv(char **env);
-void _exit_cp(char **command, char *buf, char **sep_arr);
+void _exit_cp(char **command, char *buf, char **sep_arr, int *status);
 void handle_builtin(char **command, char *buf, char **env,
 		char **sep_arr, int *status);
 
@@ -47,21 +47,20 @@ void _printenv(char **env)
  * @buf: A temporary buffer used by the program
  * @sep_arr: An array of ; separated commands.
  */
-void _exit_cp(char **command, char *buf, char **sep_arr)
+void _exit_cp(char **command, char *buf, char **sep_arr, int *status)
 {
-	unsigned int status = 0;
 	char *exit_status;
 
 	if (command[1])
 	{
 		exit_status = command[1];
-		status = _atoi(exit_status);
+		*status = _atoi(exit_status);
 	}
 
 	free(buf);
 	_free(command);
 	_free(sep_arr);
-	_exit(status);
+	_exit(*status);
 }
 
 /**
@@ -78,7 +77,7 @@ void handle_builtin(char **command, char *buf, char **env,
 	int set_retval = 0;
 
 	if (_strcmp(command[0], "exit") == 0)
-		_exit_cp(command, buf, sep_arr);
+		_exit_cp(command, buf, sep_arr, status);
 
 	if (_strcmp(command[0], "cd") == 0)
 		cd(env, command[1]);

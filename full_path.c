@@ -38,7 +38,7 @@ char *make_full_path(char *dir, char *command)
  * @buf: The buffer used to accept input from stdin
  * @n: A pointer to the number of error encountered when a command is not found
  */
-void search_path(char **command, char *program, char *buf, unsigned int *n)
+void search_path(char **command, char *program, char *buf, unsigned int *n, int *status)
 {
 	char *value, *dir, *full_path = NULL, *command_cpy;
 
@@ -62,6 +62,6 @@ void search_path(char **command, char *program, char *buf, unsigned int *n)
 	}
 
 	if (access(*command, F_OK) == -1)
-		_error(program, command, buf, n);
+		_error(program, command, buf, n, status);
 	free(value);
 }

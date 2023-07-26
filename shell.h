@@ -21,7 +21,7 @@ typedef unsigned int u_int;
 char **split_string(char *str, const char *delim);
 void _free(char **arr);
 void _isatty(void);
-void search_path(char **, char *program, char *buf, unsigned int *n);
+void search_path(char **, char *program, char *buf, unsigned int *n, int *status);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 int check_builtin(char **command);
@@ -30,13 +30,13 @@ void handle_command(char **arr, char **env, char *buf, char *program, u_int *m, 
 
 /* Actions */
 void _fork(char **arr, char **env, int *status);
-void _error(char *program, char **command, char *buf, unsigned int *n);
+void _error(char *program, char **command, char *buf, unsigned int *n, int *status);
 
 /*Built-in handler*/
 void handle_builtin(char **command, char *buf, char **env, char **set_arr, int *status);
 
 /* Built-in functions */
-void _exit_cp(char **command, char *buf, char **set_arr);
+void _exit_cp(char **command, char *buf, char **set_arr, int *status);
 void _printenv(char **env);
 void cd(char **env, char *new_dir);
 int _setenv(char **env, const char *name, const char *value, int overwrite);

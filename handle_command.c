@@ -24,7 +24,7 @@ void handle_command(char **arr, char **env, char *buf, char *program,
 	/* Process the command */
 	else
 	{
-		search_path(arr, program, buf, m);
+		search_path(arr, program, buf, m, status);
 
 		/* Execute the input command*/
 		_fork(arr, env, status);

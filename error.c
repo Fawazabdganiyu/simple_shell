@@ -7,8 +7,9 @@
  * @buf: The buffer used for stdin commands
  * @n: A pointer to the count of error encountered
  */
-void _error(char *program, char **command, char *buf, unsigned int *n)
+void _error(char *program, char **command, char *buf, unsigned int *n, int *status)
 {
+	*status = 127;
 	(*n)++;
 	write(STDERR_FILENO, program, _strlen(program));
 	write(STDERR_FILENO, ": ", 2);
@@ -21,6 +22,6 @@ void _error(char *program, char **command, char *buf, unsigned int *n)
 	{
 		free(buf);
 		_free(command);
-		exit(127);
+		exit(*status);
 	}
 }
