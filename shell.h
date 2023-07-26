@@ -26,7 +26,8 @@ char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 int check_builtin(char **command);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
-void handle_command(char **arr, char **env, char *buf, char *program, u_int *m, char **sep_arr, int *status);
+void handle_command(char **arr, char **env, char *buf, char *program,
+		u_int *m, char **sep_arr, int *status);
 int xs_space(char *str);
 
 /* Actions */
@@ -34,7 +35,8 @@ void _fork(char **arr, char **env, int *status);
 void _error(char *program, char **command, char *buf, unsigned int *n);
 
 /*Built-in handler*/
-void handle_builtin(char **command, char *buf, char **env, char **set_arr, int *status);
+void handle_builtin(char **command, char *buf, char **env,
+		char **set_arr, int *status);
 
 /* Built-in functions */
 void _exit_cp(char **command, char *buf, char **set_arr);
