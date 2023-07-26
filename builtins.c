@@ -4,7 +4,7 @@ int check_builtin(char **command);
 void _printenv(char **env);
 void _exit_cp(char **command, char *buf, char **sep_arr);
 void handle_builtin(char **command, char *buf, char **env,
-		char **sep_arr, int *status);
+		char **sep_arr, int *status, char *program, unsigned int *n);
 
 /**
  * check_builtin - checks if a command is part of
@@ -73,14 +73,14 @@ void _exit_cp(char **command, char *buf, char **sep_arr)
  * @status: The integer value of the return status
  */
 void handle_builtin(char **command, char *buf, char **env,
-		char **sep_arr, int *status)
+		char **sep_arr, int *status, char *program, unsigned int *n)
 {
 	int set_retval = 0;
 
 	if (_strcmp(command[0], "exit") == 0)
 		_exit_cp(command, buf, sep_arr); /* cd*/
 	if (_strcmp(command[0], "cd") == 0)
-		cd(env, command[1]); /*Env*/
+		cd(env, command, program, buf, n); /*Env*/
 	if (_strcmp(command[0], "env") == 0 ||
 			_strcmp(command[0], "printenv") == 0)
 		_printenv(env); /*Setenv*/

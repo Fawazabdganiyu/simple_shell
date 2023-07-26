@@ -33,15 +33,16 @@ int xs_space(char *str);
 /* Actions */
 void _fork(char **arr, char **env, int *status);
 void _error(char *program, char **command, char *buf, unsigned int *n);
+void _error_cd(char *program, char **command, char *buf, unsigned int *n);
 
 /*Built-in handler*/
 void handle_builtin(char **command, char *buf, char **env,
-		char **set_arr, int *status);
+		char **set_arr, int *status, char *program, unsigned int *n);
 
 /* Built-in functions */
 void _exit_cp(char **command, char *buf, char **set_arr);
 void _printenv(char **env);
-void cd(char **env, char *new_dir);
+void cd(char **env, char **command, char *program, char *buf, unsigned int *n);
 int _setenv(char **env, const char *name, const char *value, int overwrite);
 int _unsetenv(char **env, const char *name);
 void _echo_status(int *status);

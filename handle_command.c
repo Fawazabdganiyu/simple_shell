@@ -18,7 +18,7 @@ void handle_command(char **arr, char **env, char *buf, char *program,
 {
 	if (check_builtin(arr) == 0)
 	{
-		handle_builtin(arr, buf, env, sep_arr, status);
+		handle_builtin(arr, buf, env, sep_arr, status, program, m);
 		_free(arr);
 	}
 	/* Process the command */
