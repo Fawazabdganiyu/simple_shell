@@ -71,6 +71,8 @@ void _exit_cp(char **command, char *buf, char **sep_arr)
  * @env: to printenv
  * @sep_arr: An array of ; separated commands.
  * @status: The integer value of the return status
+ * @program: The program name
+ * @n: The error counter.
  */
 void handle_builtin(char **command, char *buf, char **env,
 		char **sep_arr, int *status, char *program, unsigned int *n)

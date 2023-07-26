@@ -3,7 +3,10 @@
 /**
  * cd - changes directory
  * @env: environ to edit
- * @new_dir: new directory to switch to
+ * @command: A pointer to an array of commands passed to the program
+ * @program: The name of the program
+ * @buf: The buffer used to get command line arguments
+ * @n: The errror counter
  */
 void cd(char **env, char **command, char *program, char *buf, unsigned int *n)
 {
