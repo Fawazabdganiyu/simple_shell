@@ -62,5 +62,6 @@ int put_int(int num);
 void reverse(char *s);
 int _puts(char *s);
 int _putchar(char c);
+void *_realloc(void *ptr, size_t old_size, size_t new_size);
 
 #endif /* _SHELL_H_ */

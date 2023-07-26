@@ -31,7 +31,8 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		if (nread >= buf_size)
 		{
 			buf_size *= 2;
-			new_ptr = realloc(*lineptr, sizeof(char) * buf_size);
+			new_ptr = _realloc(*lineptr, (sizeof(char) * INITIAL_SIZE),
+					sizeof(char) * buf_size);
 			if (!new_ptr)
 				return (-1);
 			*lineptr = new_ptr;
@@ -43,8 +44,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 			nread = 0;
 			return (*n);
 		}
-	}
-	/* Return what has been read on EOF */
+	} /* Return what has been read on EOF */
 	if (nread > 0)
 	{
 		(*lineptr)[nread] = '\0';
@@ -52,7 +52,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		nread = 0;
 		return (*n);
 	}
-	putchar('\n');
+	_putchar('\n');
 	return (-1);
 }
 
