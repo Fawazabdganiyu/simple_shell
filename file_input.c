@@ -26,7 +26,7 @@ int file_input(char **av, char **env, char *buf, char *program, u_int *m, int *s
 
 	while ((nread = getline(&buffer, &size, file_holder)) > 0)
 	{
-		if (xs_space(buffer) == -1)
+		if (xs_space(buffer) == -1 || _strcmp(buffer, "#!/bin/bash\n") == 0)
 		{
 			continue;
 		}

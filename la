@@ -1,4 +1,3 @@
 echo "main"
-#!/bin/bash
 cd
 pwd; cd -
