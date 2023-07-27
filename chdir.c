@@ -23,7 +23,8 @@ void cd(char **env, char **command, char *program, char *buf, unsigned int *n)
 		{
 			if (chdir(old_dir) == -1)
 				_error_cd(program, command, buf, n);
-			printf("%s\n", old_dir);
+			write(STDOUT_FILENO, old_dir, _strlen(old_dir));
+			_putchar('\n');
 		}
 
 		if ((_strcmp(command[1], "-") != 0))

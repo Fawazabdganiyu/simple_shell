@@ -80,7 +80,7 @@ void overwrite_env(char **env, const char *name, char *new_env, size_t key_len)
 {
 	for (; *env; env++)
 	{
-		if ((strncmp(*env, name, key_len) == 0) && ((*env)[key_len] == '='))
+		if ((_strncmp(*env, name, key_len) == 0) && ((*env)[key_len] == '='))
 			_strcpy(*env, new_env);
 	}
 }
@@ -95,18 +95,14 @@ void overwrite_env(char **env, const char *name, char *new_env, size_t key_len)
  */
 int _setenv(char **env, const char *name, const char *value)
 {
-	int overwrite = 1;
 	char *new_env, **new_environ;
 	size_t key_len, count;
 
 	if (name == NULL || value == NULL)
 		return (-1);
 	key_len = strlen(name);
-	/* Check the environ for the name */
-	if (_getenv(name) && !overwrite)
-		return (0);
 	new_env = make_env(name, value);
-	if (_getenv(name) && overwrite)
+	if (_getenv(name))
 	{
 		/* Add new_env to environ */
 		overwrite_env(env, name, new_env, key_len);
@@ -117,7 +113,7 @@ int _setenv(char **env, const char *name, const char *value)
 	{
 		count = count_env(env);
 		/* Allocate memory of size count + 2 for the new_environ */
-		new_environ = malloc(sizeof(char *) * (count + 2));
+		new_environ = malloc(sizeof(char *) * (count + 1));
 		if (new_environ == NULL)
 		{
 			free(new_env);

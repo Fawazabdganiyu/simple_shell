@@ -38,7 +38,8 @@ void _printenv(char **env)
 
 	for (i = 0; env[i] != NULL; i++)
 	{
-		printf("%s\n", env[i]);
+		write(STDOUT_FILENO, env[i], _strlen(env[i]));
+		_putchar('\n');
 	}
 }
 
@@ -88,8 +89,6 @@ void _exit_cp(char **command, char *buf, char **sep_arr,
 void handle_builtin(char **command, char *buf, char **env,
 		char **sep_arr, int *status, char *program, unsigned int *n)
 {
-	int set_retval = 0;
-
 	if (_strcmp(command[0], "exit") == 0)
 		_exit_cp(command, buf, sep_arr, program, n, status); /* cd*/
 	if (_strcmp(command[0], "cd") == 0)
@@ -97,17 +96,14 @@ void handle_builtin(char **command, char *buf, char **env,
 	if (_strcmp(command[0], "env") == 0 ||
 			_strcmp(command[0], "printenv") == 0)
 		_printenv(env); /*Setenv*/
-	if ((_strcmp(command[0], "setenv") == 0) && command[1] &&
-			command[2])
+	if ((_strcmp(command[0], "setenv") == 0) && command[1] && command[2])
 	{
-		set_retval = _setenv(env, command[1], command[2]);
-		if (set_retval == -1)
+		if ((_setenv(env, command[1], command[2]) == -1))
 			write(STDERR_FILENO, "Error: setenv failed\n", 21);
 	} /*Unsetenv*/
 	if ((_strcmp(command[0], "unsetenv") == 0) && command[1])
 	{
-		set_retval = _unsetenv(env, command[1]);
-		if (set_retval == -1)
+		if ((_unsetenv(env, command[1]) == -1))
 			write(STDERR_FILENO, "Error: unsetenv failed\n", 23);
 	} /*Echo*/
 	if ((_strcmp(command[0], "echo") == 0) && command[1])
