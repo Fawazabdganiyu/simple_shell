@@ -20,22 +20,16 @@ int main(int ac, char **av)
 
 	(void)ac;
 	program = av[0];
-
 	if (file_input(av, env, buf, program, m, &status, delim) == 0)
-		return 0;
+		return (0);
 
 	while (1)
 	{
 		/* Check if the input stream is from terminal */
 		_isatty();
-
-		/* Read input command */
 		if (getline(&buf, &n, stdin) == -1)
 			break;
-
 		/* parse the command and handle it properly */
-
-		/* Check for only space in str*/
 		if (xs_space(buf) == -1)
 			continue;
 		sep_arr = split_string(buf, ";\n");
@@ -43,8 +37,6 @@ int main(int ac, char **av)
 		for (i = 0; sep_arr[i]; i++)
 		{
 			arr = split_string(sep_arr[i], delim);
-
-		/* Handle the comands <see handle_command.c for description>*/
 			handle_command(arr, env, buf, program, m, sep_arr, &status);
 		}
 		_free(sep_arr);
