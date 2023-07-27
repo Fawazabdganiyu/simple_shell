@@ -94,8 +94,9 @@ void overwrite_env(char **env, const char *name, char *new_env, size_t key_len)
  *
  * Return: 0 on sucsess, or -1 on failure
  */
-int _setenv(char **env, const char *name, const char *value, int overwrite)
+int _setenv(char **env, const char *name, const char *value)
 {
+	int overwrite = 1;
 	char *new_env, **new_environ;
 	size_t key_len, count;
 

@@ -11,7 +11,7 @@
  */
 int main(int ac, char **av)
 {
-	char *buf = NULL, **arr, *delim = " \n", **env = environ;
+	char *buf = NULL, **arr, *delim = " \n", char **env = environ;
 	char **sep_arr;
 	size_t n = 0;
 	char *program;

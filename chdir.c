@@ -34,6 +34,6 @@ void cd(char **env, char **command, char *program, char *buf, unsigned int *n)
 		if (chdir(home) == -1)
 			_error_cd(program, command, buf, n);
 	current_dir = getcwd(buf_2, BUFFER);
-	_setenv(env, "PWD", current_dir, 1);
-	_setenv(env, "OLDPWD", cwd, 1);
+	_setenv(env, "PWD", current_dir);
+	_setenv(env, "OLDPWD", cwd);
 }
