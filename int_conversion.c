@@ -1,10 +1,21 @@
 #include "shell.h"
 
+int _putchar_err(char c);
 int _putchar(char c);
 int _puts(char *s);
 void reverse(char *s);
 int put_int(int num);
 int put_u_int(unsigned int num);
+
+/**
+ * _putchar_err - prints a char
+ * @c: char to print
+ * Return: char length = 1;
+*/
+int _putchar_err(char c)
+{
+	return (write(2, &c, 1));
+}
 
 /**
  * _putchar - prints a char
@@ -29,7 +40,7 @@ int _puts(char *s)
 
 	while (str[i])
 	{
-		retval += _putchar(str[i++]);
+		retval += _putchar_err(str[i++]);
 	}
 
 	return (retval);
