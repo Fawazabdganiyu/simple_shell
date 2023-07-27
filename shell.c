@@ -16,7 +16,7 @@ int main(int ac, char **av)
 	size_t n = 0;
 	char *program;
 	unsigned int t = 0, *m = &t, i;
-	int status;
+	int status = 0;
 
 	(void)ac;
 	program = av[0];
