@@ -1,8 +1,7 @@
 #include "shell.h"
 
 int _putchar_err(char c);
-int _putchar(char c);
-int _puts(char *s);
+int _puts_err(char *s);
 void reverse(char *s);
 int put_int(int num);
 int put_u_int(unsigned int num);
@@ -17,23 +16,13 @@ int _putchar_err(char c)
 	return (write(2, &c, 1));
 }
 
-/**
- * _putchar - prints a char
- * @c: char to print
- * Return: char length = 1;
-*/
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
 
 /**
- * _puts - prints a string
+ * _puts_err - prints a string
  * @s: str to print
  * Return: str length
 */
-int _puts(char *s)
+int _puts_err(char *s)
 {
 	char *str = (s == NULL) ? "(null)" : s;
 	int i = 0, retval = 0;
@@ -121,7 +110,7 @@ int put_u_int(unsigned int num)
 	}
 
 	reverse(s);
-	count = _puts(s);
+	count = _puts_err(s);
 
 	return (count);
 }

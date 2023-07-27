@@ -37,7 +37,7 @@ void _printenv(char **env)
 
 	for (i = 0; env[i] != NULL; i++)
 	{
-		printf("%s\n", env[i]);
+		_puts(env[i]);
 	}
 }
 
