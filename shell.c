@@ -20,6 +20,10 @@ int main(int ac, char **av)
 
 	(void)ac;
 	program = av[0];
+
+	if (file_input(av, env, buf, program, m, &status, delim) == 0)
+		return 0;
+
 	while (1)
 	{
 		/* Check if the input stream is from terminal */

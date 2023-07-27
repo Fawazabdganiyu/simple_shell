@@ -1,7 +1,4 @@
+echo "main"
 #!/bin/bash
-ls
 cd
-pwd
-cd -
-pwd
-ls ..
+pwd; cd -

@@ -35,6 +35,8 @@ void _fork(char **arr, char **env, int *status);
 void _error(char *program, char **command, char *buf, unsigned int *n);
 void _error_cd(char *program, char **command, char *buf, unsigned int *n);
 void _error_exit(char *program, char **command, char *buf, unsigned int *n);
+int file_input(char **av, char **env, char *buf, char *program,
+		u_int *m, int *status, char *delim);
 
 /*Built-in handler*/
 void handle_builtin(char **command, char *buf, char **env,
