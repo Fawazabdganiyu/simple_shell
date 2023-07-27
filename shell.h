@@ -51,6 +51,7 @@ int _setenv(char **env, const char *name, const char *value);
 int _unsetenv(char **env, const char *name);
 void _echo_status(int *status);
 void _getpid(void);
+void _echo(char **command);
 
 /* Helper functions */
 int _atoi(char *s);

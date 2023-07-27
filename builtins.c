@@ -119,6 +119,6 @@ void handle_builtin(char **command, char *buf, char **env,
 			_putchar('\n');
 		}
 		else
-			_puts(command[1]);
+			_echo(command);
 	}
 }
