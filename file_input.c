@@ -23,13 +23,11 @@ int file_input(char **av, char **env, char *buf, char *program, u_int *m, int *s
 		return (0);
 	}
 	file_holder = fopen(file, "r");
-	nread = getline(&buffer, &size, file_holder);
 
-	while (nread > 0)
+	while ((nread = getline(&buffer, &size, file_holder)) > 0)
 	{
 		if (xs_space(buffer) == -1)
 		{
-			nread = getline(&buffer, &size, file_holder);
 			continue;
 		}
 		sep_arr = split_string(buffer, ";\n");
@@ -41,8 +39,7 @@ int file_input(char **av, char **env, char *buf, char *program, u_int *m, int *s
 		/* Handle the comands <see handle_command.c for description>*/
 			handle_command(arr, env, buf, program, m, sep_arr, status);
 		}
-			nread = getline(&buffer, &size, file_holder);
-			_free(sep_arr);
+		_free(sep_arr);
 	}
 	free(buffer);
 	fclose(file_holder);
