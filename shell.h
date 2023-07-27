@@ -42,7 +42,7 @@ void handle_builtin(char **command, char *buf, char **env,
 
 /* Built-in functions */
 void _exit_cp(char **command, char *buf, char **set_arr,
-		char *program, unsigned int *n);
+		char *program, unsigned int *n, int *status);
 void _printenv(char **env);
 void cd(char **env, char **command, char *program, char *buf, unsigned int *n);
 int _setenv(char **env, const char *name, const char *value, int overwrite);
