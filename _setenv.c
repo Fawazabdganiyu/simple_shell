@@ -90,7 +90,6 @@ void overwrite_env(char **env, const char *name, char *new_env, size_t key_len)
  * @env: The environment variable
  * @name: The variable key
  * @value: The variable value
- * @overwrite: An int that specify if a variable should be overwritten or not
  *
  * Return: 0 on sucsess, or -1 on failure
  */
@@ -106,7 +105,6 @@ int _setenv(char **env, const char *name, const char *value)
 	/* Check the environ for the name */
 	if (_getenv(name) && !overwrite)
 		return (0);
-
 	new_env = make_env(name, value);
 	if (_getenv(name) && overwrite)
 	{

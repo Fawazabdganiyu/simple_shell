@@ -98,7 +98,7 @@ void handle_builtin(char **command, char *buf, char **env,
 			_strcmp(command[0], "printenv") == 0)
 		_printenv(env); /*Setenv*/
 	if ((_strcmp(command[0], "setenv") == 0) && command[1] &&
-			command[2] && command[3])
+			command[2])
 	{
 		set_retval = _setenv(env, command[1], command[2]);
 		if (set_retval == -1)
