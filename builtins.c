@@ -59,9 +59,9 @@ void _exit_cp(char **command, char *buf, char **sep_arr,
 	if (command[1])
 	{
 		exit_status = command[1];
-		status = _atoi(exit_status);
-		if (_isdigit(status) == 0)
+		if (_isdigit(exit_status) == -1)
 			_error_exit(program, command, buf, n);
+		status = _atoi(exit_status);
 	}
 
 	free(buf);

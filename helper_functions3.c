@@ -2,19 +2,21 @@
 
 /**
  * _isdigit - checks for a digit (0 through 9)
- * @c: character to check
+ * @str: character pointer to check
  *
  * Return: 1 if c is a digit, 0 if otherwise
  */
-int _isdigit(int c)
+int _isdigit(char *str)
 {
-	if (c >= '0' && c <= '9')
+	int i;
+
+	for (i = 0; str[i]; i++)
 	{
-		return (1);
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (-1);
 	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }
 

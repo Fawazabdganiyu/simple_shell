@@ -65,7 +65,7 @@ void reverse(char *s);
 int _puts(char *s);
 int _putchar(char c);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
-int _isdigit(int c);
+int _isdigit(char *str);
 int _putchar_err(char c);
 
 #endif /* _SHELL_H_ */
