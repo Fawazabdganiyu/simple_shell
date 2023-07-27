@@ -61,7 +61,10 @@ void _exit_cp(char **command, char *buf, char **sep_arr,
 	{
 		exit_status = command[1];
 		if (_isdigit(exit_status) == -1)
+		{
+			_free(sep_arr);
 			_error_exit(program, command, buf, n);
+		}
 		st = _atoi(exit_status);
 	}
 	else
