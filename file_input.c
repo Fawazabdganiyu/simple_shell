@@ -24,11 +24,10 @@ int file_input(char **av, char **env, char *buf, char *program, u_int *m, int *s
 	}
 	file_holder = fopen(file, "r");
 	nread = getline(&buffer, &size, file_holder);
-	if (strcmp(buffer, "#!/bin/bash") == 0)
-		nread = getline(&buffer, &size, file_holder);
+
 	while (nread > 0)
 	{
-		if (strcmp(buffer, "#!/bin/bash") == 0 || xs_space(buffer) == -1)
+		if (xs_space(buffer) == -1)
 		{
 			nread = getline(&buffer, &size, file_holder);
 			continue;
