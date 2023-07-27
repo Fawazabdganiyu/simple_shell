@@ -97,13 +97,10 @@ void handle_builtin(char **command, char *buf, char **env,
 	if (_strcmp(command[0], "env") == 0 ||
 			_strcmp(command[0], "printenv") == 0)
 		_printenv(env); /*Setenv*/
-	if (_strcmp(command[0], "setenv") == 0)
-		_printenv(env);
-
 	if ((_strcmp(command[0], "setenv") == 0) && command[1] &&
-			command[2] && command[3])
+			command[2])
 	{
-		set_retval = _setenv(env, command[1], command[2], _atoi(command[3]));
+		set_retval = _setenv(env, command[1], command[2]);
 		if (set_retval == -1)
 			write(STDERR_FILENO, "Error: setenv failed\n", 21);
 	} /*Unsetenv*/
