@@ -47,7 +47,7 @@ void _exit_cp(char **command, char *buf, char **set_arr,
 		char *program, unsigned int *n, int *status);
 void _printenv(char **env);
 void cd(char **env, char **command, char *program, char *buf, unsigned int *n);
-int _setenv(char **env, const char *name, const char *value, int overwrite);
+int _setenv(char **env, const char *name, const char *value);
 int _unsetenv(char **env, const char *name);
 void _echo_status(int *status);
 void _getpid(void);
