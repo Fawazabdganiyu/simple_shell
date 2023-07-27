@@ -33,7 +33,7 @@ int file_input(char **av, char **env, char *buf,
 		put_u_int(*m);
 		write(STDERR_FILENO, ": cannot open ", 14);
 		write(STDERR_FILENO, file, _strlen(file));
-		write(STDERR_FILENO, ": No such file\n", 15);
+		_putchar('\n');
 		exit(127);
 	}
 	file_holder = fopen(file, "r");
