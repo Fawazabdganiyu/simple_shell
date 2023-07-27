@@ -34,13 +34,15 @@ int xs_space(char *str);
 void _fork(char **arr, char **env, int *status);
 void _error(char *program, char **command, char *buf, unsigned int *n);
 void _error_cd(char *program, char **command, char *buf, unsigned int *n);
+void _error_exit(char *program, char **command, char *buf, unsigned int *n);
 
 /*Built-in handler*/
 void handle_builtin(char **command, char *buf, char **env,
 		char **set_arr, int *status, char *program, unsigned int *n);
 
 /* Built-in functions */
-void _exit_cp(char **command, char *buf, char **set_arr);
+void _exit_cp(char **command, char *buf, char **set_arr,
+		char *program, unsigned int *n);
 void _printenv(char **env);
 void cd(char **env, char **command, char *program, char *buf, unsigned int *n);
 int _setenv(char **env, const char *name, const char *value, int overwrite);
@@ -63,5 +65,7 @@ void reverse(char *s);
 int _puts(char *s);
 int _putchar(char c);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
+int _isdigit(int c);
+int _putchar_err(char c);
 
 #endif /* _SHELL_H_ */

@@ -2,7 +2,8 @@
 
 int check_builtin(char **command);
 void _printenv(char **env);
-void _exit_cp(char **command, char *buf, char **sep_arr);
+void _exit_cp(char **command, char *buf, char **sep_arr,
+		char *program, unsigned int *n);
 void handle_builtin(char **command, char *buf, char **env,
 		char **sep_arr, int *status, char *program, unsigned int *n);
 
@@ -46,8 +47,11 @@ void _printenv(char **env)
  * @command: A pointer to an array of character pointers  passed to the program
  * @buf: A temporary buffer used by the program
  * @sep_arr: An array of ; separated commands.
+ * @program: The program name
+ * @n: The error counter.
  */
-void _exit_cp(char **command, char *buf, char **sep_arr)
+void _exit_cp(char **command, char *buf, char **sep_arr,
+		char *program, unsigned int *n)
 {
 	unsigned int status = 0;
 	char *exit_status;
@@ -56,6 +60,8 @@ void _exit_cp(char **command, char *buf, char **sep_arr)
 	{
 		exit_status = command[1];
 		status = _atoi(exit_status);
+		if (_isdigit(status) == 0)
+			_error_exit(program, command, buf, n);
 	}
 
 	free(buf);
@@ -80,7 +86,7 @@ void handle_builtin(char **command, char *buf, char **env,
 	int set_retval = 0;
 
 	if (_strcmp(command[0], "exit") == 0)
-		_exit_cp(command, buf, sep_arr); /* cd*/
+		_exit_cp(command, buf, sep_arr, program, n); /* cd*/
 	if (_strcmp(command[0], "cd") == 0)
 		cd(env, command, program, buf, n); /*Env*/
 	if (_strcmp(command[0], "env") == 0 ||
