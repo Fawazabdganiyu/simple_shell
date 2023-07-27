@@ -15,6 +15,6 @@ void _echo(char **command)
 			_putchar(command[1][i]);
 	}
 	else
-		_puts(command[1]);
+		write(STDOUT_FILENO, command[1], _strlen(command[1]));
 	_putchar('\n');
 }
