@@ -12,9 +12,20 @@ void _echo(char **command)
 	{
 		/* "cat" */
 		for (i = 1; command[1][i] != '"'; i++)
+		{
+			if (command[1][i] == '\\')
+				continue;
 			_putchar(command[1][i]);
+		}
 	}
 	else
-		write(STDOUT_FILENO, command[1], _strlen(command[1]));
+	{
+		for (i = 0; command[1][i]; i++)
+		{
+			if (command[1][i] == '\\')
+				continue;
+			_putchar(command[1][i]);
+		}
+	}
 	_putchar('\n');
 }
