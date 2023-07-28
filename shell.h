@@ -28,6 +28,7 @@ int check_builtin(char **command);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
 void handle_command(char **arr, char **env, char *buf, char *program,
 		u_int *m, char **sep_arr, int *status);
+void comment_handler(char **buf1, char **buf2);
 int xs_space(char *str);
 
 /* Actions */

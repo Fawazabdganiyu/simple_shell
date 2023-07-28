@@ -12,7 +12,7 @@
 int main(int ac, char **av)
 {
 	char *buf = NULL, **arr, *delim = " \n", **env = environ;
-	char **sep_arr;
+	char **sep_arr, *buf2 = NULL;
 	size_t n = 0;
 	char *program;
 	unsigned int t = 0, *m = &t, i;
@@ -24,14 +24,21 @@ int main(int ac, char **av)
 		return (0);
 
 	while (1)
-	{
-		/* Check if the input stream is from terminal */
+	{ /* Check if the input stream is from terminal */
 		_isatty();
 		if (getline(&buf, &n, stdin) == -1)
 			break;
 		/* parse the command and handle it properly */
 		if (xs_space(buf) == -1)
 			continue;
+		buf2 = malloc(256);
+
+		if (buf == NULL)
+			break;
+
+		comment_handler(&buf, &buf2);
+		free(buf);
+		buf = buf2;
 		sep_arr = split_string(buf, ";\n");
 
 		for (i = 0; sep_arr[i]; i++)
@@ -40,8 +47,6 @@ int main(int ac, char **av)
 			handle_command(arr, env, buf, program, m, sep_arr, &status);
 		}
 		_free(sep_arr);
-
-
 	}
 
 	free(buf);
