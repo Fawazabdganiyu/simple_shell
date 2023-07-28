@@ -48,7 +48,7 @@ void _error_cd(char *program, char **command, char *buf, unsigned int *n)
 	{
 		free(buf);
 		_free(command);
-		exit(2);
+		exit(0);
 	}
 }
 
