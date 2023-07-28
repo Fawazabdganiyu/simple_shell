@@ -31,9 +31,9 @@ int file_input(char **av, char **env, char *buf,
 		write(STDERR_FILENO, program, _strlen(program));
 		write(STDERR_FILENO, ": ", 2);
 		put_u_int(*m);
-		write(STDERR_FILENO, ": Can't open ", 14);
+		write(STDERR_FILENO, ": Can't open ", 13);
 		write(STDERR_FILENO, file, _strlen(file));
-		_putchar('\n');
+		_putchar_err('\n');
 		exit(127);
 	}
 	file_holder = fopen(file, "r");
