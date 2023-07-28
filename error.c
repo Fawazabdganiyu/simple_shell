@@ -6,8 +6,10 @@
  * @command: A pointer to an array of malloc'ed arguments received from stdin
  * @buf: The buffer used for stdin commands
  * @n: A pointer to the count of error encountered
+ * @sep_arr: A pointer to an array of arguments for separated command
  */
-void _error(char *program, char **command, char *buf, unsigned int *n)
+void _error(char *program, char **command, char *buf,
+		unsigned int *n, char **sep_arr)
 {
 	(*n)++;
 	write(STDERR_FILENO, program, _strlen(program));
@@ -20,6 +22,7 @@ void _error(char *program, char **command, char *buf, unsigned int *n)
 	if (!isatty(STDIN_FILENO))
 	{
 		free(buf);
+		_free(sep_arr);
 		_free(command);
 		exit(127);
 	}
@@ -31,8 +34,10 @@ void _error(char *program, char **command, char *buf, unsigned int *n)
  * @command: A pointer to an array of malloc'ed arguments received from stdin
  * @buf: The buffer used for stdin commands
  * @n: A pointer to the count of error encountered
+ * @sep_arr: A pointer to an array of arguments for separated command
  */
-void _error_cd(char *program, char **command, char *buf, unsigned int *n)
+void _error_cd(char *program, char **command, char *buf,
+		unsigned int *n, char **sep_arr)
 {
 	(*n)++;
 	write(STDERR_FILENO, program, _strlen(program));
@@ -47,6 +52,7 @@ void _error_cd(char *program, char **command, char *buf, unsigned int *n)
 	if (!isatty(STDIN_FILENO))
 	{
 		free(buf);
+		_free(sep_arr);
 		_free(command);
 		exit(0);
 	}

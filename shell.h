@@ -21,7 +21,8 @@ typedef unsigned int u_int;
 char **split_string(char *str, const char *delim);
 void _free(char **arr);
 void _isatty(void);
-void search_path(char **, char *program, char *buf, unsigned int *n);
+void search_path(char **, char *program, char *buf,
+		unsigned int *n, char **sep_arr);
 char *make_full_path(char *, char*);
 char *_getenv(const char *name);
 int check_builtin(char **command);
@@ -32,9 +33,12 @@ int xs_space(char *str);
 
 /* Actions */
 void _fork(char **arr, char **env, int *status);
-void _error(char *program, char **command, char *buf, unsigned int *n);
-void _error_cd(char *program, char **command, char *buf, unsigned int *n);
-void _error_exit(char *program, char **command, char *buf, unsigned int *n);
+void _error(char *program, char **command, char *buf,
+		unsigned int *n, char **sep_arr);
+void _error_cd(char *program, char **command, char *buf,
+		unsigned int *n, char **sep_err);
+void _error_exit(char *program, char **command,
+		char *buf, unsigned int *n);
 int file_input(char **av, char **env, char *buf, char *program,
 		u_int *m, int *status, char *delim);
 
@@ -46,7 +50,8 @@ void handle_builtin(char **command, char *buf, char **env,
 void _exit_cp(char **command, char *buf, char **set_arr,
 		char *program, unsigned int *n, int *status);
 void _printenv(char **env);
-void cd(char **env, char **command, char *program, char *buf, unsigned int *n);
+void cd(char **env, char **command, char *program, char *buf,
+		unsigned int *n, char **sep_arr);
 int _setenv(char **env, const char *name, const char *value);
 int _unsetenv(char **env, const char *name);
 void _echo_status(int *status);

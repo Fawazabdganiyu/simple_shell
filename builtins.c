@@ -92,7 +92,7 @@ void handle_builtin(char **command, char *buf, char **env,
 	if (_strcmp(command[0], "exit") == 0)
 		_exit_cp(command, buf, sep_arr, program, n, status); /* cd*/
 	if (_strcmp(command[0], "cd") == 0)
-		cd(env, command, program, buf, n); /*Env*/
+		cd(env, command, program, buf, n, sep_arr); /*Env*/
 	if (_strcmp(command[0], "env") == 0 ||
 			_strcmp(command[0], "printenv") == 0)
 		_printenv(env); /*Setenv*/
