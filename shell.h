@@ -70,5 +70,7 @@ int _putchar(char c);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
 int _isdigit(char *str);
 int _putchar_err(char c);
+int _puts_norm(char *s);
+int put_int_norm(int num);
 
 #endif /* _SHELL_H_ */
