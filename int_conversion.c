@@ -1,7 +1,6 @@
 #include "shell.h"
 
 int _putchar_err(char c);
-int _putchar(char c);
 int _puts(char *s);
 void reverse(char *s);
 int put_int(int num);
@@ -16,17 +15,6 @@ int _putchar_err(char c)
 {
 	return (write(2, &c, 1));
 }
-
-/**
- * _putchar - prints a char
- * @c: char to print
- * Return: char length = 1;
-*/
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
 
 /**
  * _puts - prints a string

@@ -19,6 +19,6 @@ void _getpid(void)
  */
 void _echo_status(int *status)
 {
-	put_int(*status);
+	put_int_norm(*status);
 	_putchar('\n');
 }
