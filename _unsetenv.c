@@ -65,10 +65,12 @@ int _unsetenv(char **env, const char *name)
 		if (new_env == NULL)
 			return (-1);
 		rm_env(new_env, env, count, position);
-		new_env[count] = NULL;
+		new_env[count - 1] = NULL;
 
 		/* Update environ to new_environ */
 		env = new_env;
+
+		free(new_env);
 		return (0);
 	}
 	else

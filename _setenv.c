@@ -97,6 +97,8 @@ int _setenv(char **env, const char *name, const char *value)
 {
 	char *new_env, **new_environ;
 	size_t key_len, count;
+	char buf[256];
+	char buff[10];
 
 	if (name == NULL || value == NULL)
 		return (-1);
@@ -113,14 +115,16 @@ int _setenv(char **env, const char *name, const char *value)
 	{
 		count = count_env(env);
 		/* Allocate memory of size count + 2 for the new_environ */
-		new_environ = malloc(sizeof(char *) * (count + 1));
+		new_environ = malloc(sizeof(char *) * (count + 2));
 		if (new_environ == NULL)
 		{
 			free(new_env);
 			return (-1);
 		}
 		cpy_env(new_environ, env, count);
+		new_environ[count] = buf;
 		_strcpy(new_environ[count], new_env);
+		new_environ[count + 1] = buff;
 		new_environ[count + 1] = NULL;
 		/* Update environ to new_environ */
 		env = new_environ;
