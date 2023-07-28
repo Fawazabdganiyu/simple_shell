@@ -34,18 +34,12 @@ int check_builtin(char **command)
  */
 void _printenv(char **env)
 {
-	int i, count = 0;
+	int i;
 
 	for (i = 0; env[i] != NULL; i++)
 	{
 		write(STDOUT_FILENO, env[i], _strlen(env[i]));
 		_putchar('\n');
-		count++;
-	}
-	
-	if (count == 0)
-	{
-		write(STDOUT_FILENO, "SHLVL=0\n", 8);
 	}
 }
 
