@@ -22,6 +22,7 @@ void _fork(char **arr, char **env, int *status)
 
 	if (pid == 0)
 	{
+		process_arr(arr);
 		execve(arr[0], arr, env);
 		_free(arr);
 		exit(EXIT_FAILURE);
