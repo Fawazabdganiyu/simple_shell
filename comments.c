@@ -21,9 +21,14 @@ void comment_handler(char **buf1, char **buf2)
 		/*test = echo "#main"*/
 		if (b1[i] == '#')
 		{
-			if (!is_q1 && !is_q2)
+			if (i != 0)
+			{
+				if (b1[i - 1] != ' ')
+					b2[j++] = '#';
+			}
+			else if ((!is_q1 && !is_q2) || i == 0)
 				break;
-			else if (is_q1 && !is_q2)
+			else if ((is_q1 && !is_q2))
 				b2[j++] = '#';
 		}
 		else
